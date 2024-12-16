@@ -1,6 +1,8 @@
 package com.balugaq.buildingstaff.core.managers;
 
-import com.balugaq.buildingstaff.api.items.Staff;
+import com.balugaq.buildingstaff.api.items.BreakingStaff;
+import com.balugaq.buildingstaff.api.items.BuildingStaff;
+import com.balugaq.buildingstaff.api.objects.events.PrepareBreakingEvent;
 import com.balugaq.buildingstaff.api.objects.events.PrepareBuildingEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import lombok.Getter;
@@ -16,16 +18,14 @@ import org.metamechanists.displaymodellib.sefilib.entity.display.DisplayGroup;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
 
 @Getter
 public class DisplayManager {
     private final Map<UUID, BlockFace> lookingFaces = new HashMap<>();
     private final Map<UUID, Location> lookingAt = new HashMap<>();
-    private final Map<UUID, List<DisplayGroup>> displays = new HashMap<>();
+    private final Map<UUID, DisplayGroup> displays = new HashMap<>();
     private final JavaPlugin plugin;
     private boolean running = true;
 
@@ -41,12 +41,11 @@ public class DisplayManager {
     }
 
     public void killDisplays(UUID uuid) {
-        if (displays.containsKey(uuid)) {
-            for (DisplayGroup group : displays.get(uuid)) {
-                group.remove();
-            }
-            displays.remove(uuid);
+        DisplayGroup group = displays.get(uuid);
+        if (group != null) {
+            group.remove();
         }
+        displays.remove(uuid);
     }
 
     public void startShowBlockTask() {
@@ -81,16 +80,29 @@ public class DisplayManager {
                     killDisplays(uuid);
 
                     SlimefunItem staffLike = SlimefunItem.getByItem(player.getInventory().getItemInMainHand());
-                    if (staffLike instanceof Staff staff) {
-                        if (staff.isDisabledIn(block.getWorld())) {
+                    if (staffLike instanceof BuildingStaff buildingStaff) {
+                        if (buildingStaff.isDisabledIn(block.getWorld())) {
                             continue;
                         }
 
-                        if (staff.isDisabledMaterial(block.getType())) {
+                        if (buildingStaff.isDisabledMaterial(block.getType())) {
                             continue;
                         }
 
-                        PrepareBuildingEvent event = new PrepareBuildingEvent(player, staff, block);
+                        PrepareBuildingEvent event = new PrepareBuildingEvent(player, buildingStaff, block);
+                        Bukkit.getPluginManager().callEvent(event);
+                    }
+
+                    if (staffLike instanceof BreakingStaff breakingStaff) {
+                        if (breakingStaff.isDisabledIn(block.getWorld())) {
+                            continue;
+                        }
+
+                        if (breakingStaff.isDisabledMaterial(block.getType())) {
+                            continue;
+                        }
+
+                        PrepareBreakingEvent event = new PrepareBreakingEvent(player, breakingStaff, block);
                         Bukkit.getPluginManager().callEvent(event);
                     }
                 }
@@ -99,7 +111,7 @@ public class DisplayManager {
         }, 2, 1);
     }
 
-    public void registerDisplayGroup(UUID uuid, List<DisplayGroup> group) {
+    public void registerDisplayGroup(UUID uuid, DisplayGroup group) {
         displays.put(uuid, group);
     }
 }

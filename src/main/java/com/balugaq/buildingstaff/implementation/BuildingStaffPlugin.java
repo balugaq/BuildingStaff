@@ -8,12 +8,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 
-public class BuildingStaff extends JavaPlugin implements SlimefunAddon {
-    private static BuildingStaff instance;
+public class BuildingStaffPlugin extends JavaPlugin implements SlimefunAddon {
+    private static BuildingStaffPlugin instance;
     private @Getter DisplayManager displayManager;
     private @Getter ListenerManager listenerManager;
 
-    public static BuildingStaff getInstance() {
+    public static BuildingStaffPlugin getInstance() {
         return instance;
     }
 
@@ -32,7 +32,7 @@ public class BuildingStaff extends JavaPlugin implements SlimefunAddon {
         listenerManager = new ListenerManager(this);
         listenerManager.setup();
 
-        BuildingStaffSetup.setup(this);
+        StaffSetup.setup(this);
         getLogger().info("BuildingStaff has been enabled.");
     }
 
@@ -44,7 +44,7 @@ public class BuildingStaff extends JavaPlugin implements SlimefunAddon {
     @Override
     public void onDisable() {
         displayManager.stopShowBlockTask();
-        BuildingStaffSetup.unregister(this);
+        StaffSetup.unregister(this);
         getLogger().info("BuildingStaff has been disabled.");
     }
 

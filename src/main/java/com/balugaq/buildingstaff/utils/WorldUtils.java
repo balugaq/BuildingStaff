@@ -1,6 +1,5 @@
 package com.balugaq.buildingstaff.utils;
 
-import com.balugaq.buildingstaff.implementation.BuildingStaff;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
