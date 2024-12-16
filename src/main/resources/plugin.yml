@@ -1,6 +1,6 @@
 name: BuildingStaff
 version: ${project.version}
-main: com.balugaq.buildingstaff.implementation.BuildingStaff
+main: com.balugaq.buildingstaff.implementation.BuildingStaffPlugin
 api-version: 1.18
 depend: [ Slimefun ]
 authors: [ balugaq ]

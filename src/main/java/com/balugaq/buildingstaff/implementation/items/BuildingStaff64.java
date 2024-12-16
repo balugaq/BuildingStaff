@@ -1,13 +1,13 @@
 package com.balugaq.buildingstaff.implementation.items;
 
-import com.balugaq.buildingstaff.api.items.Staff;
+import com.balugaq.buildingstaff.api.items.BuildingStaff;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import org.bukkit.inventory.ItemStack;
 
-public class Staff9 extends Staff {
-    public Staff9(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
-        super(itemGroup, item, recipeType, recipe, 9);
+public class BuildingStaff64 extends BuildingStaff {
+    public BuildingStaff64(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+        super(itemGroup, item, recipeType, recipe, 64, false);
     }
 }

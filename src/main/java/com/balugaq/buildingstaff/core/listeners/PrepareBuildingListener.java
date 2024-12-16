@@ -1,8 +1,8 @@
 package com.balugaq.buildingstaff.core.listeners;
 
-import com.balugaq.buildingstaff.api.items.Staff;
+import com.balugaq.buildingstaff.api.items.BuildingStaff;
 import com.balugaq.buildingstaff.api.objects.events.PrepareBuildingEvent;
-import com.balugaq.buildingstaff.implementation.BuildingStaff;
+import com.balugaq.buildingstaff.implementation.BuildingStaffPlugin;
 import com.balugaq.buildingstaff.utils.StaffUtil;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
@@ -18,21 +18,24 @@ import org.metamechanists.displaymodellib.models.ModelBuilder;
 import org.metamechanists.displaymodellib.models.components.ModelCuboid;
 import org.metamechanists.displaymodellib.sefilib.entity.display.DisplayGroup;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
 public class PrepareBuildingListener implements Listener {
+    private static final ModelCuboid blockBase = new ModelCuboid()
+            .size(0.6F, 0.6F, 0.6F);
+    private static final ModelCuboid border = new ModelCuboid()
+            .material(Material.LIGHT_GRAY_STAINED_GLASS)
+            .size(0.7F, 0.7F, 0.7F);
 
     @EventHandler
     public void onPrepareBuilding(PrepareBuildingEvent event) {
         Player player = event.getPlayer();
-        Staff staff = event.getStaff();
-        showBuildingBlocksFor(player, event.getLookingAtBlock(), staff.getLimitBlocks());
+        BuildingStaff buildingStaff = event.getBuildingStaff();
+        showBuildingBlocksFor(player, event.getLookingAtBlock(), buildingStaff.getLimitBlocks(), event.getBuildingStaff());
     }
 
-    private void showBuildingBlocksFor(Player player, Block lookingAtBlock, int limitBlocks) {
+    private void showBuildingBlocksFor(Player player, Block lookingAtBlock, int limitBlocks, BuildingStaff buildingStaff) {
         if (!Slimefun.getProtectionManager().hasPermission(player, lookingAtBlock, Interaction.PLACE_BLOCK)) {
             return;
         }
@@ -57,22 +60,18 @@ public class PrepareBuildingListener implements Listener {
             }
         }
 
-        Set<Location> showingBlocks = StaffUtil.getBuildingLocations(player, Math.min(limitBlocks, playerHas));
-        List<DisplayGroup> displayGroupList = new ArrayList<>();
+        Set<Location> showingBlocks = StaffUtil.getBuildingLocations(player, Math.min(limitBlocks, playerHas), buildingStaff.getAxis(player.getInventory().getItemInMainHand()), buildingStaff.isBlockStrict());
+        DisplayGroup displayGroup = new DisplayGroup(player.getLocation(), 0.0F, 0.0F);
         for (Location location : showingBlocks) {
-            final DisplayGroup displayGroup = new ModelBuilder()
-                    .add("main", new ModelCuboid()
-                            .material(material)
-                            .size(0.6F, 0.6F, 0.6F))
-                    .add("border", new ModelCuboid()
-                            .material(Material.LIGHT_GRAY_STAINED_GLASS)
-                            .size(0.7F, 0.7F, 0.7F))
-                    .buildAtBlockCenter(location);
-            displayGroupList.add(displayGroup);
+            String ls = location.getBlockX() + "_" + location.getBlockY() + "_" + location.getBlockZ();
+            Location displayLocation = location.clone().add(0.5, 0.5, 0.5);
+            displayGroup.addDisplay("m" + ls, blockBase.material(material).build(displayLocation));
+            displayGroup.addDisplay("b" + ls, border.build(displayLocation));
         }
+
 
         UUID uuid = player.getUniqueId();
 
-        BuildingStaff.getInstance().getDisplayManager().registerDisplayGroup(uuid, displayGroupList);
+        BuildingStaffPlugin.getInstance().getDisplayManager().registerDisplayGroup(uuid, displayGroup);
     }
 }

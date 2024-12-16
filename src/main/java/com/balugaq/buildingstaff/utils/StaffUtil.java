@@ -1,6 +1,7 @@
 package com.balugaq.buildingstaff.utils;
 
 import lombok.Getter;
+import org.bukkit.Axis;
 import org.bukkit.FluidCollisionMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -32,7 +33,8 @@ public class StaffUtil {
         validFaces.add(BlockFace.DOWN);
     }
 
-    public static Set<Location> getBuildingLocations(Player player, int limitBlocks) {
+
+    public static Set<Location> getBuildingLocations(Player player, int limitBlocks, Axis onlyAxis, boolean blockStrict) {
         if (limitBlocks <= 0) {
             return new HashSet<>();
         }
@@ -46,6 +48,12 @@ public class StaffUtil {
         if (originalFacing == null) {
             return new HashSet<>();
         }
+        BlockFace lookingFacing = getLookingFacing(originalFacing);
+
+        return getLocations(lookingBlock, lookingFacing, limitBlocks, onlyAxis, blockStrict);
+    }
+
+    public static BlockFace getLookingFacing(BlockFace originalFacing) {
         BlockFace lookingFacing = originalFacing.getOppositeFace();
         if (!originalFacing.isCartesian()) {
             switch (originalFacing) {
@@ -61,17 +69,14 @@ public class StaffUtil {
                 case WEST_NORTH_WEST, WEST_SOUTH_WEST -> {
                     lookingFacing = BlockFace.WEST;
                 }
-                default -> {
-                    return new HashSet<>();
-                }
             }
         }
 
-        return getLocations(lookingBlock, lookingFacing, limitBlocks);
+        return lookingFacing;
     }
 
-    private static Set<Location> getLocations(Block lookingBlock, BlockFace lookingFacing, int limitBlocks) {
-        Set<Location> rawLocations = getRawLocations(lookingBlock, lookingFacing, limitBlocks);
+    public static Set<Location> getLocations(Block lookingBlock, BlockFace lookingFacing, int limitBlocks, Axis onlyAxis, boolean blockStrict) {
+        Set<Location> rawLocations = getRawLocations(lookingBlock, lookingFacing, limitBlocks, onlyAxis, blockStrict);
         Set<Location> outwardLocations = new HashSet<>();
         for (Location location : rawLocations) {
             Location outwardLocation = location.clone().add(lookingFacing.getOppositeFace().getDirection());
@@ -107,11 +112,51 @@ public class StaffUtil {
         return result;
     }
 
-    private static Set<Location> getRawLocations(Block lookingBlock, BlockFace lookingFacing, int limitBlocks) {
+    public static Set<Location> getRawLocations(Block lookingBlock, BlockFace lookingFacing, int limitBlocks) {
+        return getRawLocations(lookingBlock, lookingFacing, limitBlocks, null, true);
+    }
+
+    public static Set<Location> getRawLocations(Block lookingBlock, BlockFace lookingFacing, int limitBlocks, Axis onlyAxis) {
+        return getRawLocations(lookingBlock, lookingFacing, limitBlocks, onlyAxis, true);
+    }
+
+    public static Set<Location> getRawLocations(Block lookingBlock, BlockFace lookingFacing, int limitBlocks, Axis onlyAxis, boolean blockStrict) {
         Set<Location> locations = new HashSet<>();
         Queue<Location> queue = new LinkedList<>();
         Location lookingLocation = lookingBlock.getLocation();
         queue.offer(lookingLocation);
+
+        Set<BlockFace> faces = new HashSet<>(validFaces);
+        faces.remove(lookingFacing);
+        faces.remove(lookingFacing.getOppositeFace());
+        if (onlyAxis != null) {
+            switch (onlyAxis) {
+                case X -> {
+                    faces.remove(BlockFace.NORTH);
+                    faces.remove(BlockFace.SOUTH);
+                    faces.remove(BlockFace.UP);
+                    faces.remove(BlockFace.DOWN);
+                }
+
+                case Y -> {
+                    faces.remove(BlockFace.NORTH);
+                    faces.remove(BlockFace.SOUTH);
+                    faces.remove(BlockFace.EAST);
+                    faces.remove(BlockFace.WEST);
+                }
+
+                case Z -> {
+                    faces.remove(BlockFace.EAST);
+                    faces.remove(BlockFace.WEST);
+                    faces.remove(BlockFace.UP);
+                    faces.remove(BlockFace.DOWN);
+                }
+            }
+        }
+
+        if (faces.isEmpty()) {
+            return locations;
+        }
 
         while (!queue.isEmpty() && limitBlocks > 0) {
             Block currentBlock = queue.poll().getBlock();
@@ -124,13 +169,9 @@ public class StaffUtil {
             if (!locations.contains(queuedLocation)) {
                 locations.add(queuedLocation);
 
-                for (BlockFace face : validFaces) {
-                    if (face == lookingFacing || face == lookingFacing.getOppositeFace()) {
-                        continue;
-                    }
-
+                for (BlockFace face : faces) {
                     Block block = currentBlock.getRelative(face);
-                    if (block.getType() == type) {
+                    if (!blockStrict || block.getType() == type) {
                         Location location = block.getLocation();
                         if (!locations.contains(location)) {
                             Block outwardBlock = block.getRelative(lookingFacing.getOppositeFace());
@@ -150,7 +191,7 @@ public class StaffUtil {
         return locations;
     }
 
-    private static int manhattanDistance(Location a, Location b) {
+    public static int manhattanDistance(Location a, Location b) {
         int dx = Math.abs(a.getBlockX() - b.getBlockX());
         int dy = Math.abs(a.getBlockY() - b.getBlockY());
         int dz = Math.abs(a.getBlockZ() - b.getBlockZ());

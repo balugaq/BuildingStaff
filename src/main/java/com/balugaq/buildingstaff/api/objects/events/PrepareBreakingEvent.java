@@ -1,5 +1,6 @@
 package com.balugaq.buildingstaff.api.objects.events;
 
+import com.balugaq.buildingstaff.api.items.BreakingStaff;
 import com.balugaq.buildingstaff.api.items.BuildingStaff;
 import lombok.Getter;
 import org.bukkit.block.Block;
@@ -9,15 +10,15 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 @Getter
-public class PrepareBuildingEvent extends Event {
+public class PrepareBreakingEvent extends Event {
     private static final HandlerList handlers = new HandlerList();
     private final Player player;
-    private final BuildingStaff buildingStaff;
+    private final BreakingStaff breakingStaff;
     private final Block lookingAtBlock;
 
-    public PrepareBuildingEvent(Player player, BuildingStaff buildingStaff, Block lookingAtBlock) {
+    public PrepareBreakingEvent(Player player, BreakingStaff breakingStaff, Block lookingAtBlock) {
         this.player = player;
-        this.buildingStaff = buildingStaff;
+        this.breakingStaff = breakingStaff;
         this.lookingAtBlock = lookingAtBlock;
     }
 

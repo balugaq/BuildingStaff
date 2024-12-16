@@ -1,6 +1,6 @@
 package com.balugaq.buildingstaff.utils;
 
-import com.balugaq.buildingstaff.implementation.BuildingStaff;
+import com.balugaq.buildingstaff.implementation.BuildingStaffPlugin;
 
 public class Debug {
     public static void stackTraceManually() {
@@ -29,6 +29,6 @@ public class Debug {
     }
 
     public static void log(String message) {
-        BuildingStaff.getInstance().getLogger().info(message);
+        BuildingStaffPlugin.getInstance().getLogger().info(message);
     }
 }
