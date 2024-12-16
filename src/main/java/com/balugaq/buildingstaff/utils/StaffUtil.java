@@ -99,21 +99,13 @@ public class StaffUtil {
 
         // sort by shortest distance
         Set<Location> locations = new HashSet<>(distances.keySet());
-        List<Location> sortedLocations = locations.stream().sorted(Comparator.comparingDouble(distances::get)).toList();
-        Set<Location> result = new HashSet<>();
-        AtomicInteger count = new AtomicInteger(0);
-        sortedLocations.forEach(location -> {
-            if (count.incrementAndGet() > limitBlocks) {
-                return;
-            }
-            result.add(location);
-        });
+        List<Location> sortedLocations = locations.stream().sorted(Comparator.comparingDouble(distances::get)).limit(limitBlocks).toList();
 
-        return result;
+        return new HashSet<>(sortedLocations);
     }
 
     public static Set<Location> getRawLocations(Block lookingBlock, BlockFace lookingFacing, int limitBlocks) {
-        return getRawLocations(lookingBlock, lookingFacing, limitBlocks, null, true);
+        return getRawLocations(lookingBlock, lookingFacing, limitBlocks, null);
     }
 
     public static Set<Location> getRawLocations(Block lookingBlock, BlockFace lookingFacing, int limitBlocks, Axis onlyAxis) {
@@ -121,6 +113,10 @@ public class StaffUtil {
     }
 
     public static Set<Location> getRawLocations(Block lookingBlock, BlockFace lookingFacing, int limitBlocks, Axis onlyAxis, boolean blockStrict) {
+        return getRawLocations(lookingBlock, lookingFacing, limitBlocks, onlyAxis, blockStrict, true);
+    }
+
+    public static Set<Location> getRawLocations(Block lookingBlock, BlockFace lookingFacing, int limitBlocks, Axis onlyAxis, boolean blockStrict, boolean checkOutward) {
         Set<Location> locations = new HashSet<>();
         Queue<Location> queue = new LinkedList<>();
         Location lookingLocation = lookingBlock.getLocation();
@@ -174,13 +170,17 @@ public class StaffUtil {
                     if (!blockStrict || block.getType() == type) {
                         Location location = block.getLocation();
                         if (!locations.contains(location)) {
-                            Block outwardBlock = block.getRelative(lookingFacing.getOppositeFace());
-                            Material outwardType = outwardBlock.getType();
-                            if (outwardType == Material.AIR || outwardType == Material.WATER || outwardType == Material.LAVA) {
-                                Location blockLocation = block.getLocation();
-                                if (manhattanDistance(lookingLocation, blockLocation) < limitBlocks) {
-                                    queue.offer(blockLocation);
+                            if (checkOutward) {
+                                Block outwardBlock = block.getRelative(lookingFacing.getOppositeFace());
+                                Material outwardType = outwardBlock.getType();
+                                if (outwardType != Material.AIR && outwardType != Material.WATER && outwardType != Material.LAVA) {
+                                    continue;
                                 }
+                            }
+
+                            Location blockLocation = block.getLocation();
+                            if (manhattanDistance(lookingLocation, blockLocation) < limitBlocks) {
+                                queue.offer(blockLocation);
                             }
                         }
                     }

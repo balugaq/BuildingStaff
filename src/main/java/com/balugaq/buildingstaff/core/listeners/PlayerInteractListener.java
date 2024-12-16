@@ -1,6 +1,6 @@
 package com.balugaq.buildingstaff.core.listeners;
 
-import com.balugaq.buildingstaff.api.items.BuildingStaff;
+import com.balugaq.buildingstaff.api.items.Staff;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -14,9 +14,10 @@ public class PlayerInteractListener implements Listener {
     @EventHandler(priority = EventPriority.LOWEST)
     public void onPlayerInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
+        player.sendMessage("onPlayerInteract");
         ItemStack itemInMainHand = player.getInventory().getItemInMainHand();
         SlimefunItem sfItem = SlimefunItem.getByItem(itemInMainHand);
-        if (sfItem instanceof BuildingStaff) {
+        if (sfItem instanceof Staff) {
             ItemStack itemInOffHand = player.getInventory().getItemInOffHand();
             if (itemInOffHand != null && itemInOffHand.getType() != Material.AIR && itemInOffHand.getType().isBlock()) {
                 event.setCancelled(true);

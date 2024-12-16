@@ -1,5 +1,7 @@
 package com.balugaq.buildingstaff.api.items;
 
+import com.balugaq.buildingstaff.implementation.BuildingStaffPlugin;
+import com.balugaq.buildingstaff.utils.Debug;
 import com.balugaq.buildingstaff.utils.KeyUtil;
 import com.balugaq.buildingstaff.utils.PersistentUtil;
 import com.balugaq.buildingstaff.utils.StaffUtil;
@@ -32,11 +34,16 @@ import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Getter
-public abstract class BreakingStaff extends SlimefunItem {
+public abstract class BreakingStaff extends SlimefunItem implements Staff {
     private final int limitBlocks;
     private final boolean blockStrict;
 
@@ -78,12 +85,35 @@ public abstract class BreakingStaff extends SlimefunItem {
                 return;
             }
 
+            Location lookingLocation = lookingAtBlock.getLocation();
             BlockFace lookingFacing = getBlockFaceAsCartesian(originalFacing);
             ItemStack item = player.getInventory().getItemInMainHand();
 
-            Set<Location> locations = StaffUtil.getRawLocations(lookingAtBlock, lookingFacing, limitBlocks, getAxis(item), blockStrict);
+            Set<Location> rawLocations = StaffUtil.getRawLocations(lookingAtBlock, lookingFacing, limitBlocks, getAxis(item), blockStrict);
 
-            for (Location location : locations) {
+            World world = lookingLocation.getWorld();
+            Map<Location, Double> distances = new HashMap<>();
+            for (Location location : rawLocations) {
+                if (world.getWorldBorder().isInside(location)) {
+                    double distance = location.distance(lookingLocation);
+                    distances.put(location, distance);
+                }
+            }
+
+            // sort by shortest distance
+            Set<Location> locations = new HashSet<>(distances.keySet());
+            List<Location> sortedLocations = locations.stream().sorted(Comparator.comparingDouble(distances::get)).toList();
+            Set<Location> result = new HashSet<>();
+            AtomicInteger count = new AtomicInteger(0);
+            sortedLocations.forEach(location -> {
+                if (count.incrementAndGet() > limitBlocks) {
+                    return;
+                }
+                result.add(location);
+            });
+
+            Set<Location> locationsToBreak = new HashSet<>();
+            for (Location location : result) {
                 if (!Slimefun.getProtectionManager().hasPermission(player, location, Interaction.BREAK_BLOCK)) {
                     continue;
                 }
@@ -91,9 +121,21 @@ public abstract class BreakingStaff extends SlimefunItem {
                 BlockBreakEvent event = new BlockBreakEvent(location.getBlock(), player);
                 Bukkit.getPluginManager().callEvent(event);
                 if (!event.isCancelled()) {
-                    location.getBlock().breakNaturally();
+                    locationsToBreak.add(location);
                 }
             }
+
+            // I don't know why, but it must be run later, or it will create PlayerInteractEvent AGAIN!
+            Bukkit.getScheduler().runTaskLater(getAddon().getJavaPlugin(), () -> {
+                for (Location location : locationsToBreak) {
+                    Block block = location.getBlock();
+                    if (block == null) {
+                        return;
+                    }
+
+                    block.breakNaturally();
+                }
+            }, 1);
         });
     }
 
@@ -321,25 +363,6 @@ public abstract class BreakingStaff extends SlimefunItem {
             return Material.valueOf(name);
         } catch (IllegalArgumentException | NullPointerException e) {
             return Material.AIR;
-        }
-    }
-
-    @Nullable
-    public Axis getAxis(ItemStack item) {
-        byte axis = PersistentUtil.getOrDefault(item, PersistentDataType.BYTE, KeyUtil.AXIS, (byte) 15);
-        return switch (axis) {
-            case 0 -> Axis.X;
-            case 1 -> Axis.Y;
-            case 2 -> Axis.Z;
-            default -> null;
-        };
-    }
-
-    public void setAxis(ItemStack item, @Nullable Axis axis) {
-        if (axis == null) {
-            PersistentUtil.remove(item, KeyUtil.AXIS);
-        } else {
-            PersistentUtil.set(item, PersistentDataType.BYTE, KeyUtil.AXIS, (byte) (axis.ordinal()));
         }
     }
 }

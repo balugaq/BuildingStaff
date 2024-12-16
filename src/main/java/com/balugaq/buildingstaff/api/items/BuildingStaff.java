@@ -35,7 +35,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Getter
-public abstract class BuildingStaff extends SlimefunItem {
+public abstract class BuildingStaff extends SlimefunItem implements Staff {
     private final int limitBlocks;
     private final boolean blockStrict;
 
@@ -131,8 +131,13 @@ public abstract class BuildingStaff extends SlimefunItem {
                 }
             }
 
-            Bukkit.getScheduler().runTaskLater(BuildingStaffPlugin.getInstance(), () -> {
+            // I don't know why, but it must be run later, or it will create PlayerInteractEvent AGAIN!
+            Bukkit.getScheduler().runTaskLater(getAddon().getJavaPlugin(), () -> {
                 for (Block block : blocks) {
+                    if (block == null) {
+                        continue;
+                    }
+
                     if (copyStateAble(material)) {
                         WorldUtils.copyBlockState(lookingAtBlock.getState(), block);
                     } else {
@@ -396,25 +401,6 @@ public abstract class BuildingStaff extends SlimefunItem {
             return Material.valueOf(name);
         } catch (IllegalArgumentException | NullPointerException e) {
             return Material.AIR;
-        }
-    }
-
-    @Nullable
-    public Axis getAxis(ItemStack item) {
-        byte axis = PersistentUtil.getOrDefault(item, PersistentDataType.BYTE, KeyUtil.AXIS, (byte) 15);
-        return switch (axis) {
-            case 0 -> Axis.X;
-            case 1 -> Axis.Y;
-            case 2 -> Axis.Z;
-            default -> null;
-        };
-    }
-
-    public void setAxis(ItemStack item, @Nullable Axis axis) {
-        if (axis == null) {
-            PersistentUtil.remove(item, KeyUtil.AXIS);
-        } else {
-            PersistentUtil.set(item, PersistentDataType.BYTE, KeyUtil.AXIS, (byte) (axis.ordinal()));
         }
     }
 }

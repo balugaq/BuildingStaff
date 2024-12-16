@@ -31,6 +31,7 @@ public class PrepareBuildingListener implements Listener {
     @EventHandler
     public void onPrepareBuilding(PrepareBuildingEvent event) {
         Player player = event.getPlayer();
+        player.sendMessage("§aPreparing building blocks...");
         BuildingStaff buildingStaff = event.getBuildingStaff();
         showBuildingBlocksFor(player, event.getLookingAtBlock(), buildingStaff.getLimitBlocks(), event.getBuildingStaff());
     }
