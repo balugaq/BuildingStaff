@@ -19,7 +19,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
-
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -35,8 +34,24 @@ public class StaffSetup implements IManager {
     public static BreakingStaff64 breakingStaff64;
     public static BreakingStaff4096 breakingStaff4096;
     private final BuildingStaffPlugin plugin;
+
     public StaffSetup(BuildingStaffPlugin plugin) {
         this.plugin = plugin;
+    }
+
+    public static void unregisterAll(SlimefunAddon instance) {
+        SlimefunItemUtil.unregisterItem(breakingStaff4096);
+        SlimefunItemUtil.unregisterItem(breakingStaff64);
+        SlimefunItemUtil.unregisterItem(breakingStaff9);
+        SlimefunItemUtil.unregisterItem(blockStrictBuildingStaff4096);
+        SlimefunItemUtil.unregisterItem(blockStrictBuildingStaff64);
+        SlimefunItemUtil.unregisterItem(blockStrictBuildingStaff9);
+        SlimefunItemUtil.unregisterItem(buildingStaff4096);
+        SlimefunItemUtil.unregisterItem(buildingStaff64);
+        SlimefunItemUtil.unregisterItem(buildingStaff9);
+        SlimefunItemUtil.unregisterItemGroup(mainGroup);
+        SlimefunItemUtil.unregisterItems(instance);
+        SlimefunItemUtil.unregisterItemGroups(instance);
     }
 
     @Override
@@ -227,20 +242,5 @@ public class StaffSetup implements IManager {
     @Override
     public void shutdown() {
         unregisterAll(plugin);
-    }
-
-    public static void unregisterAll(SlimefunAddon instance) {
-        SlimefunItemUtil.unregisterItem(breakingStaff4096);
-        SlimefunItemUtil.unregisterItem(breakingStaff64);
-        SlimefunItemUtil.unregisterItem(breakingStaff9);
-        SlimefunItemUtil.unregisterItem(blockStrictBuildingStaff4096);
-        SlimefunItemUtil.unregisterItem(blockStrictBuildingStaff64);
-        SlimefunItemUtil.unregisterItem(blockStrictBuildingStaff9);
-        SlimefunItemUtil.unregisterItem(buildingStaff4096);
-        SlimefunItemUtil.unregisterItem(buildingStaff64);
-        SlimefunItemUtil.unregisterItem(buildingStaff9);
-        SlimefunItemUtil.unregisterItemGroup(mainGroup);
-        SlimefunItemUtil.unregisterItems(instance);
-        SlimefunItemUtil.unregisterItemGroups(instance);
     }
 }

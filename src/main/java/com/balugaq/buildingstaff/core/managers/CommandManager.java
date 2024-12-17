@@ -20,9 +20,11 @@ import java.util.List;
 public class CommandManager implements TabExecutor, IManager {
     private final BuildingStaffPlugin plugin;
     private final List<SubCommand> subCommands = new ArrayList<>();
+
     public CommandManager(BuildingStaffPlugin plugin) {
         this.plugin = plugin;
     }
+
     @Override
     public void setup() {
         subCommands.add(new ReloadCommand(plugin));
