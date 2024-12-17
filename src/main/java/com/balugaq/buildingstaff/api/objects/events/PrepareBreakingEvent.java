@@ -4,18 +4,20 @@ import com.balugaq.buildingstaff.api.items.BreakingStaff;
 import lombok.Getter;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.bukkit.event.player.PlayerEvent;
 import org.jetbrains.annotations.NotNull;
 
+@SuppressWarnings("unused")
 @Getter
-public class PrepareBreakingEvent extends Event {
+public class PrepareBreakingEvent extends PlayerEvent {
     private static final HandlerList handlers = new HandlerList();
     private final Player player;
     private final BreakingStaff breakingStaff;
     private final Block lookingAtBlock;
 
     public PrepareBreakingEvent(Player player, BreakingStaff breakingStaff, Block lookingAtBlock) {
+        super(player);
         this.player = player;
         this.breakingStaff = breakingStaff;
         this.lookingAtBlock = lookingAtBlock;

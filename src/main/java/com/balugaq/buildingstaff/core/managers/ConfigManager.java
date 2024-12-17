@@ -1,5 +1,6 @@
 package com.balugaq.buildingstaff.core.managers;
 
+import com.balugaq.buildingstaff.utils.Debug;
 import lombok.Getter;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -44,7 +45,7 @@ public class ConfigManager {
         try {
             existingConfig.save(existingFile);
         } catch (IOException e) {
-            e.printStackTrace();
+            Debug.log(e);
         }
     }
 

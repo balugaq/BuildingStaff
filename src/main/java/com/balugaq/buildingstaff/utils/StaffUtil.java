@@ -18,6 +18,7 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
 
+@SuppressWarnings("unused")
 public class StaffUtil {
     public static final Set<BlockFace> validFaces = new HashSet<>();
 
@@ -54,18 +55,10 @@ public class StaffUtil {
         BlockFace lookingFacing = originalFacing.getOppositeFace();
         if (!originalFacing.isCartesian()) {
             switch (originalFacing) {
-                case NORTH_EAST, NORTH_WEST, NORTH_NORTH_EAST, NORTH_NORTH_WEST -> {
-                    lookingFacing = BlockFace.NORTH;
-                }
-                case SOUTH_EAST, SOUTH_WEST, SOUTH_SOUTH_EAST, SOUTH_SOUTH_WEST -> {
-                    lookingFacing = BlockFace.SOUTH;
-                }
-                case EAST_NORTH_EAST, EAST_SOUTH_EAST -> {
-                    lookingFacing = BlockFace.EAST;
-                }
-                case WEST_NORTH_WEST, WEST_SOUTH_WEST -> {
-                    lookingFacing = BlockFace.WEST;
-                }
+                case NORTH_EAST, NORTH_WEST, NORTH_NORTH_EAST, NORTH_NORTH_WEST -> lookingFacing = BlockFace.NORTH;
+                case SOUTH_EAST, SOUTH_WEST, SOUTH_SOUTH_EAST, SOUTH_SOUTH_WEST -> lookingFacing = BlockFace.SOUTH;
+                case EAST_NORTH_EAST, EAST_SOUTH_EAST -> lookingFacing = BlockFace.EAST;
+                case WEST_NORTH_WEST, WEST_SOUTH_WEST -> lookingFacing = BlockFace.WEST;
             }
         }
 

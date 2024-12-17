@@ -22,7 +22,7 @@ public class ReflectionUtil {
             declaredField.setAccessible(true);
             declaredField.set(object, value);
         } catch (NoSuchFieldException | IllegalAccessException e) {
-            e.printStackTrace();
+            Debug.log(e);
             return false;
         }
         return true;
@@ -34,7 +34,7 @@ public class ReflectionUtil {
             declaredField.setAccessible(true);
             declaredField.set(null, value);
         } catch (NoSuchFieldException | IllegalAccessException e) {
-            e.printStackTrace();
+            Debug.log(e);
             return false;
         }
         return true;
@@ -72,7 +72,7 @@ public class ReflectionUtil {
                 return field.get(object);
             }
         } catch (IllegalAccessException e) {
-            e.printStackTrace();
+            Debug.log(e);
             return null;
         }
 

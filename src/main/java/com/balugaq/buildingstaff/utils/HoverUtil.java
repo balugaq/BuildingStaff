@@ -8,7 +8,7 @@ import net.md_5.bungee.api.chat.hover.content.Text;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
-@SuppressWarnings("deprecation")
+@SuppressWarnings({"deprecation", "unused"})
 @UtilityClass
 public class HoverUtil {
     public static void send(@NotNull CommandSender sender, String display, String hover) {

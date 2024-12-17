@@ -4,6 +4,7 @@ import com.balugaq.buildingstaff.implementation.BuildingStaffPlugin;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+@SuppressWarnings("unused")
 public class Debug {
     private static final JavaPlugin plugin = BuildingStaffPlugin.getInstance();
     private static final String debugPrefix = "[Debug] ";
@@ -14,7 +15,7 @@ public class Debug {
             if (obj == null) {
                 sb.append("null");
             } else {
-                sb.append(obj.toString());
+                sb.append(obj);
             }
         }
         debug(sb.toString());
@@ -42,7 +43,7 @@ public class Debug {
             if (obj == null) {
                 sb.append("null");
             } else {
-                sb.append(obj.toString());
+                sb.append(obj);
             }
         }
         sendMessage(player, sb.toString());
@@ -70,7 +71,7 @@ public class Debug {
         try {
             throw new Error();
         } catch (Throwable e) {
-            e.printStackTrace();
+            Debug.log(e);
         }
     }
 
@@ -80,7 +81,7 @@ public class Debug {
             if (obj == null) {
                 sb.append("null");
             } else {
-                sb.append(obj.toString());
+                sb.append(obj);
             }
         }
 
@@ -99,5 +100,13 @@ public class Debug {
 
     public static void log(String message) {
         plugin.getLogger().info(message);
+    }
+
+    public static void log(Throwable e) {
+        e.printStackTrace();
+    }
+
+    public static void log() {
+        log("");
     }
 }

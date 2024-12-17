@@ -1,6 +1,7 @@
 package com.balugaq.buildingstaff.utils;
 
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.collections.Pair;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -11,6 +12,7 @@ import javax.annotation.Nonnull;
 import java.lang.reflect.Field;
 import java.util.function.Consumer;
 
+@SuppressWarnings("unused")
 public class WorldUtils {
     protected static Class<?> craftBlockStateClass;
     protected static Field interfaceBlockDataField;
@@ -23,7 +25,7 @@ public class WorldUtils {
         try {
             World sampleWorld = Bukkit.getWorlds().get(0);
             BlockState blockstate = sampleWorld.getBlockAt(0, 0, 0).getState();
-            var result = ReflectionUtil.getDeclaredFieldsRecursively(blockstate.getClass(), "data");
+            Pair<Field, Class<?>> result = ReflectionUtil.getDeclaredFieldsRecursively(blockstate.getClass(), "data");
             interfaceBlockDataField = result.getFirstValue();
             interfaceBlockDataField.setAccessible(true);
             craftBlockStateClass = result.getSecondValue();
@@ -34,7 +36,7 @@ public class WorldUtils {
             weakWorldField = ReflectionUtil.getDeclaredFieldsRecursively(craftBlockStateClass, "weakWorld").getFirstValue();
             weakWorldField.setAccessible(true);
             success = true;
-        } catch (Throwable ignored) {
+        } catch (NullPointerException ignored) {
 
         }
     }
