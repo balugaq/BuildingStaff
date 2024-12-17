@@ -80,7 +80,7 @@ public class PrepareBreakingListener implements Listener {
                 limitBlocks,
                 breakingStaff.getAxis(itemInMainHand),
                 breakingStaff.isBlockStrict(),
-                false
+                true
         );
 
         World world = lookingLocation.getWorld();
