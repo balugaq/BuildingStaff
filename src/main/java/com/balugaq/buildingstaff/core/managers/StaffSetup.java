@@ -21,6 +21,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 public class StaffSetup implements IManager {
     public static ItemGroup mainGroup;
@@ -39,7 +40,7 @@ public class StaffSetup implements IManager {
         this.plugin = plugin;
     }
 
-    public static void unregisterAll(SlimefunAddon instance) {
+    public static void unregisterAll(@NotNull SlimefunAddon instance) {
         SlimefunItemUtil.unregisterItem(breakingStaff4096);
         SlimefunItemUtil.unregisterItem(breakingStaff64);
         SlimefunItemUtil.unregisterItem(breakingStaff9);

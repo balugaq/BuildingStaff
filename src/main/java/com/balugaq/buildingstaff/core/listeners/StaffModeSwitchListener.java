@@ -4,12 +4,14 @@ import com.balugaq.buildingstaff.api.items.Staff;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import org.bukkit.Axis;
 import org.bukkit.ChatColor;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerSwapHandItemsEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +19,7 @@ import java.util.List;
 @SuppressWarnings("deprecation")
 public class StaffModeSwitchListener implements Listener {
     @EventHandler
-    public void onStaffModeSwitch(PlayerSwapHandItemsEvent event) {
+    public void onStaffModeSwitch(@NotNull PlayerSwapHandItemsEvent event) {
         Player player = event.getPlayer();
         ItemStack itemInOffHand = event.getOffHandItem();
         SlimefunItem staffLike = SlimefunItem.getByItem(itemInOffHand);
@@ -54,6 +56,7 @@ public class StaffModeSwitchListener implements Listener {
             player.getInventory().setItemInMainHand(itemInOffHand);
             event.setCancelled(true);
             player.sendMessage(ChatColor.GOLD + "方向已切换为: " + (nextAxis == null ? "无" : nextAxis.name()));
+            player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0F, 1.0F);
         }
     }
 }

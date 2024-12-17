@@ -17,6 +17,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
+import org.jetbrains.annotations.NotNull;
 import org.metamechanists.displaymodellib.models.components.ModelCuboid;
 import org.metamechanists.displaymodellib.sefilib.entity.display.DisplayGroup;
 
@@ -37,7 +38,7 @@ public class PrepareBreakingListener implements Listener {
             .size(0.9F, 0.9F, 0.9F);
 
     @EventHandler
-    public void onPrepareBreaking(PrepareBreakingEvent event) {
+    public void onPrepareBreaking(@NotNull PrepareBreakingEvent event) {
         if (!DISPLAY_PROJECTION) {
             return;
         }
@@ -50,7 +51,7 @@ public class PrepareBreakingListener implements Listener {
         showBreakingBlocksFor(player, event.getLookingAtBlock(), breakingStaff.getLimitBlocks(), breakingStaff);
     }
 
-    private void showBreakingBlocksFor(Player player, Block lookingAtBlock, int limitBlocks, BreakingStaff breakingStaff) {
+    private void showBreakingBlocksFor(@NotNull Player player, @NotNull Block lookingAtBlock, int limitBlocks, @NotNull BreakingStaff breakingStaff) {
         if (!Slimefun.getProtectionManager().hasPermission(player, lookingAtBlock, Interaction.BREAK_BLOCK)) {
             return;
         }

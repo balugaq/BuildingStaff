@@ -8,6 +8,8 @@ import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Comparator;
 import java.util.HashMap;
@@ -32,7 +34,7 @@ public class StaffUtil {
     }
 
 
-    public static Set<Location> getBuildingLocations(Player player, int limitBlocks, Axis onlyAxis, boolean blockStrict) {
+    public static @NotNull Set<Location> getBuildingLocations(@NotNull Player player, int limitBlocks, Axis onlyAxis, boolean blockStrict) {
         if (limitBlocks <= 0) {
             return new HashSet<>();
         }
@@ -51,7 +53,7 @@ public class StaffUtil {
         return getLocations(lookingBlock, lookingFacing, limitBlocks, onlyAxis, blockStrict);
     }
 
-    public static BlockFace getLookingFacing(BlockFace originalFacing) {
+    public static @NotNull BlockFace getLookingFacing(@NotNull BlockFace originalFacing) {
         BlockFace lookingFacing = originalFacing.getOppositeFace();
         if (!originalFacing.isCartesian()) {
             switch (originalFacing) {
@@ -65,7 +67,7 @@ public class StaffUtil {
         return lookingFacing;
     }
 
-    public static Set<Location> getLocations(Block lookingBlock, BlockFace lookingFacing, int limitBlocks, Axis onlyAxis, boolean blockStrict) {
+    public static @NotNull Set<Location> getLocations(@NotNull Block lookingBlock, @NotNull BlockFace lookingFacing, int limitBlocks, Axis onlyAxis, boolean blockStrict) {
         Set<Location> rawLocations = getRawLocations(lookingBlock, lookingFacing, limitBlocks, onlyAxis, blockStrict);
         Set<Location> outwardLocations = new HashSet<>();
         for (Location location : rawLocations) {
@@ -94,19 +96,19 @@ public class StaffUtil {
         return new HashSet<>(sortedLocations);
     }
 
-    public static Set<Location> getRawLocations(Block lookingBlock, BlockFace lookingFacing, int limitBlocks) {
+    public static @NotNull Set<Location> getRawLocations(@NotNull Block lookingBlock, @NotNull BlockFace lookingFacing, int limitBlocks) {
         return getRawLocations(lookingBlock, lookingFacing, limitBlocks, null);
     }
 
-    public static Set<Location> getRawLocations(Block lookingBlock, BlockFace lookingFacing, int limitBlocks, Axis onlyAxis) {
+    public static @NotNull Set<Location> getRawLocations(@NotNull Block lookingBlock, @NotNull BlockFace lookingFacing, int limitBlocks, Axis onlyAxis) {
         return getRawLocations(lookingBlock, lookingFacing, limitBlocks, onlyAxis, true);
     }
 
-    public static Set<Location> getRawLocations(Block lookingBlock, BlockFace lookingFacing, int limitBlocks, Axis onlyAxis, boolean blockStrict) {
+    public static @NotNull Set<Location> getRawLocations(@NotNull Block lookingBlock, @NotNull BlockFace lookingFacing, int limitBlocks, Axis onlyAxis, boolean blockStrict) {
         return getRawLocations(lookingBlock, lookingFacing, limitBlocks, onlyAxis, blockStrict, true);
     }
 
-    public static Set<Location> getRawLocations(Block lookingBlock, BlockFace lookingFacing, int limitBlocks, Axis onlyAxis, boolean blockStrict, boolean checkOutward) {
+    public static @NotNull Set<Location> getRawLocations(@NotNull Block lookingBlock, @NotNull BlockFace lookingFacing, int limitBlocks, @Nullable Axis onlyAxis, boolean blockStrict, boolean checkOutward) {
         Set<Location> locations = new HashSet<>();
         Queue<Location> queue = new LinkedList<>();
         Location lookingLocation = lookingBlock.getLocation();
@@ -181,7 +183,7 @@ public class StaffUtil {
         return locations;
     }
 
-    public static int manhattanDistance(Location a, Location b) {
+    public static int manhattanDistance(@NotNull Location a, @NotNull Location b) {
         int dx = Math.abs(a.getBlockX() - b.getBlockX());
         int dy = Math.abs(a.getBlockY() - b.getBlockY());
         int dz = Math.abs(a.getBlockZ() - b.getBlockZ());

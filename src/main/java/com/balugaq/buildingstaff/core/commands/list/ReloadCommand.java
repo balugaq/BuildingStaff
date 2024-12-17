@@ -17,7 +17,7 @@ public class ReloadCommand extends SubCommand {
     }
 
     @Override
-    public String getIdentifier() {
+    public @NotNull String getIdentifier() {
         return IDENTIFIER;
     }
 

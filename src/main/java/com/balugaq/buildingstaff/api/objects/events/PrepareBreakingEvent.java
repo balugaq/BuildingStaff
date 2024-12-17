@@ -15,7 +15,7 @@ public class PrepareBreakingEvent extends PlayerEvent {
     private final BreakingStaff breakingStaff;
     private final Block lookingAtBlock;
 
-    public PrepareBreakingEvent(Player player, BreakingStaff breakingStaff, Block lookingAtBlock) {
+    public PrepareBreakingEvent(@NotNull Player player, BreakingStaff breakingStaff, Block lookingAtBlock) {
         super(player);
         this.breakingStaff = breakingStaff;
         this.lookingAtBlock = lookingAtBlock;

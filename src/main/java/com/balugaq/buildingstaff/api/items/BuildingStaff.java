@@ -34,7 +34,7 @@ public abstract class BuildingStaff extends SlimefunItem implements Staff {
     private final boolean blockStrict;
     private final boolean opOnly;
 
-    public BuildingStaff(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe, int limitBlocks, boolean blockStrict, boolean opOnly) {
+    public BuildingStaff(@NotNull ItemGroup itemGroup, @NotNull SlimefunItemStack item, @NotNull RecipeType recipeType, ItemStack @NotNull [] recipe, int limitBlocks, boolean blockStrict, boolean opOnly) {
         super(itemGroup, item, recipeType, recipe);
         this.limitBlocks = limitBlocks;
         this.blockStrict = blockStrict;
@@ -42,7 +42,7 @@ public abstract class BuildingStaff extends SlimefunItem implements Staff {
     }
 
     @NotNull
-    private static BlockFace getBlockFaceAsCartesian(BlockFace originalFacing) {
+    private static BlockFace getBlockFaceAsCartesian(@NotNull BlockFace originalFacing) {
         // Seems here's a bug, but it works fine...
         BlockFace lookingFacing = originalFacing.getOppositeFace();
         if (!originalFacing.isCartesian()) {
@@ -174,7 +174,7 @@ public abstract class BuildingStaff extends SlimefunItem implements Staff {
         });
     }
 
-    public boolean copyStateAble(Material material) {
+    public boolean copyStateAble(@NotNull Material material) {
         return // Items that be allowed to copy state
                 MaterialTags.FENCE_GATES.isTagged(material)
                         || material.name().endsWith("_SLAB")
@@ -194,7 +194,7 @@ public abstract class BuildingStaff extends SlimefunItem implements Staff {
                         || material == Material.DEEPSLATE_REDSTONE_ORE;
     }
 
-    public boolean isDisabledMaterial(Material material) {
+    public boolean isDisabledMaterial(@NotNull Material material) {
         if (// Items that can store items
                 MaterialTags.SHULKER_BOXES.isTagged(material)
                         || material == Material.CHEST

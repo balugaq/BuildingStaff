@@ -38,7 +38,7 @@ public abstract class BreakingStaff extends SlimefunItem implements Staff {
     private final boolean blockStrict;
     private final boolean opOnly;
 
-    public BreakingStaff(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe, int limitBlocks, boolean blockStrict, boolean opOnly) {
+    public BreakingStaff(@NotNull ItemGroup itemGroup, @NotNull SlimefunItemStack item, @NotNull RecipeType recipeType, ItemStack @NotNull [] recipe, int limitBlocks, boolean blockStrict, boolean opOnly) {
         super(itemGroup, item, recipeType, recipe);
         this.limitBlocks = limitBlocks;
         this.blockStrict = blockStrict;
@@ -46,7 +46,7 @@ public abstract class BreakingStaff extends SlimefunItem implements Staff {
     }
 
     @NotNull
-    private static BlockFace getBlockFaceAsCartesian(BlockFace originalFacing) {
+    private static BlockFace getBlockFaceAsCartesian(@NotNull BlockFace originalFacing) {
         // Seems here's a bug, but it works fine...
         BlockFace lookingFacing = originalFacing.getOppositeFace();
         if (!originalFacing.isCartesian()) {
@@ -152,7 +152,7 @@ public abstract class BreakingStaff extends SlimefunItem implements Staff {
         });
     }
 
-    public boolean isDisabledMaterial(Material material) {
+    public boolean isDisabledMaterial(@NotNull Material material) {
         if (// Items that can store items
                 MaterialTags.SHULKER_BOXES.isTagged(material)
                         || material == Material.CHEST

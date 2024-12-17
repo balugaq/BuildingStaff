@@ -15,7 +15,7 @@ public class PrepareBuildingEvent extends PlayerEvent {
     private final BuildingStaff buildingStaff;
     private final Block lookingAtBlock;
 
-    public PrepareBuildingEvent(Player player, BuildingStaff buildingStaff, Block lookingAtBlock) {
+    public PrepareBuildingEvent(@NotNull Player player, BuildingStaff buildingStaff, Block lookingAtBlock) {
         super(player);
         this.buildingStaff = buildingStaff;
         this.lookingAtBlock = lookingAtBlock;

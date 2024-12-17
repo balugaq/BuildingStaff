@@ -9,6 +9,7 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.Radioactive;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import lombok.experimental.UtilityClass;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 
@@ -29,7 +30,7 @@ public class SlimefunItemUtil {
         }
     }
 
-    public static void unregisterItem(SlimefunItem item) {
+    public static void unregisterItem(@Nullable SlimefunItem item) {
         if (item == null) {
             return;
         }
@@ -59,7 +60,7 @@ public class SlimefunItemUtil {
         }
     }
 
-    public static void unregisterItemGroup(ItemGroup itemGroup) {
+    public static void unregisterItemGroup(@Nullable ItemGroup itemGroup) {
         if (itemGroup == null) {
             return;
         }

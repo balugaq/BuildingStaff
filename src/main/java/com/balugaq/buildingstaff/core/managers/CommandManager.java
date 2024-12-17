@@ -46,7 +46,7 @@ public class CommandManager implements TabExecutor, IManager {
     }
 
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
         if (!sender.isOp()) {
             sender.sendMessage("You don't have permission to use this command.");
             return false;
@@ -70,7 +70,7 @@ public class CommandManager implements TabExecutor, IManager {
     }
 
     @Override
-    public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+    public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
         if (!sender.isOp()) {
             return null;
         }

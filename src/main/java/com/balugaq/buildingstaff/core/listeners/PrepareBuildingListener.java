@@ -15,6 +15,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
+import org.jetbrains.annotations.NotNull;
 import org.metamechanists.displaymodellib.models.components.ModelCuboid;
 import org.metamechanists.displaymodellib.sefilib.entity.display.DisplayGroup;
 
@@ -31,7 +32,7 @@ public class PrepareBuildingListener implements Listener {
             .size(0.7F, 0.7F, 0.7F);
 
     @EventHandler
-    public void onPrepareBuilding(PrepareBuildingEvent event) {
+    public void onPrepareBuilding(@NotNull PrepareBuildingEvent event) {
         if (!DISPLAY_PROJECTION) {
             return;
         }
@@ -44,7 +45,7 @@ public class PrepareBuildingListener implements Listener {
         showBuildingBlocksFor(player, event.getLookingAtBlock(), buildingStaff.getLimitBlocks(), event.getBuildingStaff());
     }
 
-    private void showBuildingBlocksFor(Player player, Block lookingAtBlock, int limitBlocks, BuildingStaff buildingStaff) {
+    private void showBuildingBlocksFor(@NotNull Player player, @NotNull Block lookingAtBlock, int limitBlocks, @NotNull BuildingStaff buildingStaff) {
         if (!Slimefun.getProtectionManager().hasPermission(player, lookingAtBlock, Interaction.PLACE_BLOCK)) {
             return;
         }
