@@ -8,6 +8,6 @@ import org.bukkit.inventory.ItemStack;
 
 public class BuildingStaff4096 extends BuildingStaff {
     public BuildingStaff4096(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
-        super(itemGroup, item, recipeType, recipe, 4096, false);
+        super(itemGroup, item, recipeType, recipe, 4096, false, true);
     }
 }

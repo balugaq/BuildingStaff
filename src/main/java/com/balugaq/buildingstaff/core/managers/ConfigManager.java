@@ -1,5 +1,6 @@
 package com.balugaq.buildingstaff.core.managers;
 
+import com.balugaq.buildingstaff.api.interfaces.IManager;
 import com.balugaq.buildingstaff.utils.Debug;
 import lombok.Getter;
 import org.bukkit.configuration.ConfigurationSection;
@@ -15,11 +16,21 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 
 @Getter
-public class ConfigManager {
+public class ConfigManager implements IManager {
     private final JavaPlugin plugin;
 
     public ConfigManager(JavaPlugin plugin) {
         this.plugin = plugin;
+    }
+
+    @Override
+    public void setup() {
+        loadConfig();
+    }
+
+    @Override
+    public void shutdown() {
+
     }
 
     public void loadConfig() {

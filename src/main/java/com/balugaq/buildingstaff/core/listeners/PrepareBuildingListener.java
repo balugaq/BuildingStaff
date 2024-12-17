@@ -14,6 +14,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.metadata.FixedMetadataValue;
 import org.metamechanists.displaymodellib.models.components.ModelCuboid;
 import org.metamechanists.displaymodellib.sefilib.entity.display.DisplayGroup;
 
@@ -76,6 +77,10 @@ public class PrepareBuildingListener implements Listener {
             displayGroup.addDisplay("m" + ls, blockBase.material(material).build(displayLocation));
             displayGroup.addDisplay("b" + ls, border.build(displayLocation));
         }
+
+        displayGroup.getDisplays().forEach((name, display) -> {
+            display.setMetadata(BuildingStaffPlugin.getInstance().getName(), new FixedMetadataValue(BuildingStaffPlugin.getInstance(), true));
+        });
 
 
         UUID uuid = player.getUniqueId();

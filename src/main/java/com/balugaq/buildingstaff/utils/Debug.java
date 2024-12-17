@@ -1,10 +1,11 @@
 package com.balugaq.buildingstaff.utils;
 
 import com.balugaq.buildingstaff.implementation.BuildingStaffPlugin;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "deprecation"})
 public class Debug {
     private static final JavaPlugin plugin = BuildingStaffPlugin.getInstance();
     private static final String debugPrefix = "[Debug] ";
@@ -99,7 +100,7 @@ public class Debug {
     }
 
     public static void log(String message) {
-        plugin.getLogger().info(message);
+        plugin.getLogger().info(ChatColor.translateAlternateColorCodes('&', message));
     }
 
     public static void log(Throwable e) {

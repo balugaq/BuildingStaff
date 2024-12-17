@@ -1,5 +1,7 @@
-package com.balugaq.buildingstaff.implementation;
+package com.balugaq.buildingstaff.core.managers;
 
+import com.balugaq.buildingstaff.api.interfaces.IManager;
+import com.balugaq.buildingstaff.implementation.BuildingStaffPlugin;
 import com.balugaq.buildingstaff.implementation.items.BlockStrictBuildingStaff4096;
 import com.balugaq.buildingstaff.implementation.items.BlockStrictBuildingStaff64;
 import com.balugaq.buildingstaff.implementation.items.BlockStrictBuildingStaff9;
@@ -17,10 +19,11 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
+
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-public class StaffSetup {
+public class StaffSetup implements IManager {
     public static ItemGroup mainGroup;
     public static BuildingStaff9 buildingStaff9;
     public static BuildingStaff64 buildingStaff64;
@@ -31,15 +34,19 @@ public class StaffSetup {
     public static BreakingStaff9 breakingStaff9;
     public static BreakingStaff64 breakingStaff64;
     public static BreakingStaff4096 breakingStaff4096;
+    private final BuildingStaffPlugin plugin;
+    public StaffSetup(BuildingStaffPlugin plugin) {
+        this.plugin = plugin;
+    }
 
-
-    public static void setup(SlimefunAddon instance) {
+    @Override
+    public void setup() {
         mainGroup = new ItemGroup(KeyUtil.newKey("building_staff"), new ItemStack(new CustomItemStack(
                 Material.BLAZE_ROD,
                 "&a建筑魔杖"
         )));
 
-        mainGroup.register(instance);
+        mainGroup.register(plugin);
 
         buildingStaff9 = new BuildingStaff9(
                 mainGroup,
@@ -59,7 +66,7 @@ public class StaffSetup {
                 }
         );
 
-        buildingStaff9.register(instance);
+        buildingStaff9.register(plugin);
 
         buildingStaff64 = new BuildingStaff64(
                 mainGroup,
@@ -79,7 +86,7 @@ public class StaffSetup {
                 }
         );
 
-        buildingStaff64.register(instance);
+        buildingStaff64.register(plugin);
 
         buildingStaff4096 = new BuildingStaff4096(
                 mainGroup,
@@ -89,13 +96,14 @@ public class StaffSetup {
                         "&a建筑魔杖 | &e4096格",
                         "&7右键以放置方块",
                         "&c最大范围: 4096格",
-                        "&a选中平面可由任意方块组成"
+                        "&a选中平面可由任意方块组成",
+                        "&c仅限管理员使用"
                 ),
                 RecipeType.NULL,
                 new ItemStack[]{}
         );
 
-        buildingStaff4096.register(instance);
+        buildingStaff4096.register(plugin);
 
         blockStrictBuildingStaff9 = new BlockStrictBuildingStaff9(
                 mainGroup,
@@ -115,7 +123,7 @@ public class StaffSetup {
                 }
         );
 
-        blockStrictBuildingStaff9.register(instance);
+        blockStrictBuildingStaff9.register(plugin);
 
         blockStrictBuildingStaff64 = new BlockStrictBuildingStaff64(
                 mainGroup,
@@ -135,7 +143,7 @@ public class StaffSetup {
                 }
         );
 
-        blockStrictBuildingStaff64.register(instance);
+        blockStrictBuildingStaff64.register(plugin);
 
         blockStrictBuildingStaff4096 = new BlockStrictBuildingStaff4096(
                 mainGroup,
@@ -145,7 +153,8 @@ public class StaffSetup {
                         "&a建筑魔杖 | &e4096格",
                         "&7右键以放置方块",
                         "&c最大范围: 4096格",
-                        "&c选中平面只能由一种方块组成"
+                        "&c选中平面只能由一种方块组成",
+                        "&c仅限管理员使用"
                 ),
                 RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{
@@ -155,7 +164,7 @@ public class StaffSetup {
                 }
         );
 
-        blockStrictBuildingStaff4096.register(instance);
+        blockStrictBuildingStaff4096.register(plugin);
 
         breakingStaff9 = new BreakingStaff9(
                 mainGroup,
@@ -175,7 +184,7 @@ public class StaffSetup {
                 }
         );
 
-        breakingStaff9.register(instance);
+        breakingStaff9.register(plugin);
 
         breakingStaff64 = new BreakingStaff64(
                 mainGroup,
@@ -195,7 +204,7 @@ public class StaffSetup {
                 }
         );
 
-        breakingStaff64.register(instance);
+        breakingStaff64.register(plugin);
 
         breakingStaff4096 = new BreakingStaff4096(
                 mainGroup,
@@ -205,16 +214,22 @@ public class StaffSetup {
                         "&c破坏魔杖 | &e4096格",
                         "&7右键以破坏方块",
                         "&c最大范围: 4096格",
-                        "&c选中平面只能由一种方块组成"
+                        "&c选中平面只能由一种方块组成",
+                        "&c仅限管理员使用"
                 ),
                 RecipeType.NULL,
                 new ItemStack[]{}
         );
 
-        breakingStaff4096.register(instance);
+        breakingStaff4096.register(plugin);
     }
 
-    public static void unregister(SlimefunAddon instance) {
+    @Override
+    public void shutdown() {
+        unregisterAll(plugin);
+    }
+
+    public static void unregisterAll(SlimefunAddon instance) {
         SlimefunItemUtil.unregisterItem(breakingStaff4096);
         SlimefunItemUtil.unregisterItem(breakingStaff64);
         SlimefunItemUtil.unregisterItem(breakingStaff9);

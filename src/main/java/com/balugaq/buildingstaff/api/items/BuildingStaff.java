@@ -32,11 +32,13 @@ import java.util.Set;
 public abstract class BuildingStaff extends SlimefunItem implements Staff {
     private final int limitBlocks;
     private final boolean blockStrict;
+    private final boolean opOnly;
 
-    public BuildingStaff(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe, int limitBlocks, boolean blockStrict) {
+    public BuildingStaff(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe, int limitBlocks, boolean blockStrict, boolean opOnly) {
         super(itemGroup, item, recipeType, recipe);
         this.limitBlocks = limitBlocks;
         this.blockStrict = blockStrict;
+        this.opOnly = opOnly;
     }
 
     @NotNull
@@ -65,6 +67,10 @@ public abstract class BuildingStaff extends SlimefunItem implements Staff {
             }
 
             Player player = playerRightClickEvent.getPlayer();
+            if (opOnly && !player.isOp()) {
+                return;
+            }
+
             if (player.getGameMode() == GameMode.SPECTATOR) {
                 return;
             }

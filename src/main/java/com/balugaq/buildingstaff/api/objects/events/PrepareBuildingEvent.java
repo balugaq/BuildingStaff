@@ -12,13 +12,11 @@ import org.jetbrains.annotations.NotNull;
 @Getter
 public class PrepareBuildingEvent extends PlayerEvent {
     private static final HandlerList handlers = new HandlerList();
-    private final Player player;
     private final BuildingStaff buildingStaff;
     private final Block lookingAtBlock;
 
     public PrepareBuildingEvent(Player player, BuildingStaff buildingStaff, Block lookingAtBlock) {
         super(player);
-        this.player = player;
         this.buildingStaff = buildingStaff;
         this.lookingAtBlock = lookingAtBlock;
     }

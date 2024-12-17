@@ -1,5 +1,6 @@
 package com.balugaq.buildingstaff.core.managers;
 
+import com.balugaq.buildingstaff.api.interfaces.IManager;
 import com.balugaq.buildingstaff.api.items.BreakingStaff;
 import com.balugaq.buildingstaff.api.items.BuildingStaff;
 import com.balugaq.buildingstaff.api.objects.events.PrepareBreakingEvent;
@@ -22,7 +23,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @Getter
-public class DisplayManager {
+public class DisplayManager implements IManager {
     private final Map<UUID, BlockFace> lookingFaces = new HashMap<>();
     private final Map<UUID, Location> lookingAt = new HashMap<>();
     private final Map<UUID, DisplayGroup> displays = new HashMap<>();
@@ -31,6 +32,16 @@ public class DisplayManager {
 
     public DisplayManager(JavaPlugin plugin) {
         this.plugin = plugin;
+    }
+
+    @Override
+    public void setup() {
+        startShowBlockTask();
+    }
+
+    @Override
+    public void shutdown() {
+        stopShowBlockTask();
     }
 
     public void stopShowBlockTask() {
