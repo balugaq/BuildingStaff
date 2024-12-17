@@ -34,14 +34,23 @@ import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class PrepareBreakingListener implements Listener {
+    private static final boolean DEBUG = BuildingStaffPlugin.getInstance().getConfigManager().isDebug();
+    private static final boolean DISPLAY_PROJECTION = BuildingStaffPlugin.getInstance().getConfigManager().isDisplayProjection();
+
     private static final ModelCuboid border = new ModelCuboid()
             .material(Material.RED_STAINED_GLASS)
             .size(0.9F, 0.9F, 0.9F);
 
     @EventHandler
     public void onPrepareBreaking(PrepareBreakingEvent event) {
+        if (!DISPLAY_PROJECTION) {
+            return;
+        }
+
         Player player = event.getPlayer();
-        player.sendMessage("§cPreparing breaking blocks...");
+        if (DEBUG) {
+            player.sendMessage("§cPreparing breaking blocks...");
+        }
         BreakingStaff breakingStaff = event.getBreakingStaff();
         showBreakingBlocksFor(player, event.getLookingAtBlock(), breakingStaff.getLimitBlocks(), breakingStaff);
     }

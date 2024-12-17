@@ -6,6 +6,33 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Debug {
     private static final JavaPlugin plugin = BuildingStaffPlugin.getInstance();
+    private static final String debugPrefix = "[Debug] ";
+    public static void debug(Object... objects) {
+        StringBuilder sb = new StringBuilder();
+        for (Object obj : objects) {
+            if (obj == null) {
+                sb.append("null");
+            } else {
+                sb.append(obj.toString());
+            }
+        }
+        debug(sb.toString());
+    }
+
+    public static void debug(Object object) {
+        debug(object.toString());
+    }
+
+    public static void debug(String... messages) {
+        for (String message : messages) {
+            debug(message);
+        }
+    }
+    public static void debug(String message) {
+        if (BuildingStaffPlugin.getInstance().getConfigManager().isDebug()) {
+            log(debugPrefix + message);
+        }
+    }
 
     public static void sendMessage(Player player, Object... objects) {
         StringBuilder sb = new StringBuilder();

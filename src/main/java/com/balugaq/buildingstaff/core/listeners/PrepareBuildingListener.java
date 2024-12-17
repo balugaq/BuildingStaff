@@ -22,6 +22,8 @@ import java.util.Set;
 import java.util.UUID;
 
 public class PrepareBuildingListener implements Listener {
+    private static final boolean DEBUG = BuildingStaffPlugin.getInstance().getConfigManager().isDebug();
+    private static final boolean DISPLAY_PROJECTION = BuildingStaffPlugin.getInstance().getConfigManager().isDisplayProjection();
     private static final ModelCuboid blockBase = new ModelCuboid()
             .size(0.6F, 0.6F, 0.6F);
     private static final ModelCuboid border = new ModelCuboid()
@@ -30,8 +32,14 @@ public class PrepareBuildingListener implements Listener {
 
     @EventHandler
     public void onPrepareBuilding(PrepareBuildingEvent event) {
+        if (!DISPLAY_PROJECTION) {
+            return;
+        }
+
         Player player = event.getPlayer();
-        player.sendMessage("§aPreparing building blocks...");
+        if (DEBUG) {
+            player.sendMessage("§aPreparing building blocks...");
+        }
         BuildingStaff buildingStaff = event.getBuildingStaff();
         showBuildingBlocksFor(player, event.getLookingAtBlock(), buildingStaff.getLimitBlocks(), event.getBuildingStaff());
     }
