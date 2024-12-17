@@ -1,7 +1,6 @@
 package com.balugaq.buildingstaff.api.objects.events;
 
 import com.balugaq.buildingstaff.api.items.BreakingStaff;
-import com.balugaq.buildingstaff.api.items.BuildingStaff;
 import lombok.Getter;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;

@@ -1,6 +1,5 @@
 package com.balugaq.buildingstaff.utils;
 
-import lombok.Getter;
 import org.bukkit.Axis;
 import org.bukkit.FluidCollisionMode;
 import org.bukkit.Location;
@@ -18,8 +17,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
-import java.util.Stack;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class StaffUtil {
     public static final Set<BlockFace> validFaces = new HashSet<>();

@@ -13,6 +13,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class PlayerInteractListener implements Listener {
     private static final boolean DEBUG = BuildingStaffPlugin.getInstance().getConfigManager().isDebug();
+
     @EventHandler(priority = EventPriority.LOWEST)
     public void onPlayerInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();

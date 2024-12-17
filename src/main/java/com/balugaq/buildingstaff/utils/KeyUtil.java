@@ -10,6 +10,7 @@ import org.jetbrains.annotations.NotNull;
 @UtilityClass
 public class KeyUtil {
     public static NamespacedKey AXIS = newKey("axis");
+
     public static @NotNull NamespacedKey newKey(@NotNull String key) {
         return new NamespacedKey(BuildingStaffPlugin.getInstance(), key);
     }

@@ -1,6 +1,5 @@
 package com.balugaq.buildingstaff.api.items;
 
-import com.balugaq.buildingstaff.utils.Debug;
 import com.balugaq.buildingstaff.utils.KeyUtil;
 import com.balugaq.buildingstaff.utils.PersistentUtil;
 import org.bukkit.Axis;

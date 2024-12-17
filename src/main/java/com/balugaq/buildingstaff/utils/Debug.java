@@ -7,6 +7,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Debug {
     private static final JavaPlugin plugin = BuildingStaffPlugin.getInstance();
     private static final String debugPrefix = "[Debug] ";
+
     public static void debug(Object... objects) {
         StringBuilder sb = new StringBuilder();
         for (Object obj : objects) {
@@ -28,6 +29,7 @@ public class Debug {
             debug(message);
         }
     }
+
     public static void debug(String message) {
         if (BuildingStaffPlugin.getInstance().getConfigManager().isDebug()) {
             log(debugPrefix + message);
@@ -45,6 +47,7 @@ public class Debug {
         }
         sendMessage(player, sb.toString());
     }
+
     public static void sendMessage(Player player, Object object) {
         if (object == null) {
             sendMessage(player, "null");

@@ -1,15 +1,12 @@
 package com.balugaq.buildingstaff.core.listeners;
 
 import com.balugaq.buildingstaff.api.items.BreakingStaff;
-import com.balugaq.buildingstaff.api.items.BuildingStaff;
 import com.balugaq.buildingstaff.api.objects.events.PrepareBreakingEvent;
-import com.balugaq.buildingstaff.api.objects.events.PrepareBuildingEvent;
 import com.balugaq.buildingstaff.implementation.BuildingStaffPlugin;
 import com.balugaq.buildingstaff.utils.StaffUtil;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 import org.bukkit.FluidCollisionMode;
-import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -20,7 +17,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
-import org.metamechanists.displaymodellib.models.ModelBuilder;
 import org.metamechanists.displaymodellib.models.components.ModelCuboid;
 import org.metamechanists.displaymodellib.sefilib.entity.display.DisplayGroup;
 
@@ -31,7 +27,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class PrepareBreakingListener implements Listener {
     private static final boolean DEBUG = BuildingStaffPlugin.getInstance().getConfigManager().isDebug();
