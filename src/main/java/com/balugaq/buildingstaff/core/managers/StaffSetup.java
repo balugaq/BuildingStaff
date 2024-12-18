@@ -57,6 +57,7 @@ public class StaffSetup implements IManager {
 
     @Override
     public void setup() {
+        ItemStack stick = new ItemStack(Material.STICK);
         mainGroup = new ItemGroup(KeyUtil.newKey("building_staff"), new ItemStack(new CustomItemStack(
                 Material.BLAZE_ROD,
                 "&a建筑魔杖"
@@ -74,11 +75,11 @@ public class StaffSetup implements IManager {
                         "&a最大范围: 9格",
                         "&a选中平面可由任意方块组成"
                 ),
-                RecipeType.ANCIENT_ALTAR,
+                RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{
-                        SlimefunItems.PROGRAMMABLE_ANDROID, SlimefunItems.GPS_TRANSMITTER_2, SlimefunItems.PROGRAMMABLE_ANDROID,
-                        SlimefunItems.GPS_TRANSMITTER_2, SlimefunItems.STAFF_ELEMENTAL, SlimefunItems.GPS_TRANSMITTER_2,
-                        SlimefunItems.CARGO_MOTOR, SlimefunItems.GPS_TRANSMITTER_2, SlimefunItems.CARGO_MOTOR
+                        null, null, SlimefunItems.DAMASCUS_STEEL_INGOT,
+                        null, stick, null,
+                        stick, null, null
                 }
         );
 
@@ -133,9 +134,9 @@ public class StaffSetup implements IManager {
                 ),
                 RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{
-                        null, null, null,
-                        null, buildingStaff9.getItem(), null,
-                        null, null, null
+                        null, null, SlimefunItems.BRASS_INGOT,
+                        null, stick, null,
+                        stick, null, null
                 }
         );
 
@@ -153,9 +154,9 @@ public class StaffSetup implements IManager {
                 ),
                 RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{
-                        null, null, null,
-                        null, buildingStaff64.getItem(), null,
-                        null, null, null
+                        blockStrictBuildingStaff9.getItem(), blockStrictBuildingStaff9.getItem(), blockStrictBuildingStaff9.getItem(),
+                        blockStrictBuildingStaff9.getItem(), SlimefunItems.STAFF_ELEMENTAL, blockStrictBuildingStaff9.getItem(),
+                        blockStrictBuildingStaff9.getItem(), blockStrictBuildingStaff9.getItem(), blockStrictBuildingStaff9.getItem()
                 }
         );
 
@@ -172,12 +173,8 @@ public class StaffSetup implements IManager {
                         "&c选中平面只能由一种方块组成",
                         "&c仅限管理员使用"
                 ),
-                RecipeType.ENHANCED_CRAFTING_TABLE,
-                new ItemStack[]{
-                        null, null, null,
-                        null, buildingStaff4096.getItem(), null,
-                        null, null, null
-                }
+                RecipeType.NULL,
+                new ItemStack[]{}
         );
 
         blockStrictBuildingStaff4096.register(plugin);
@@ -192,11 +189,11 @@ public class StaffSetup implements IManager {
                         "&a最大范围: 9格",
                         "&c选中平面只能由一种方块组成"
                 ),
-                RecipeType.ANCIENT_ALTAR,
+                RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{
-                        SlimefunItems.GPS_TRANSMITTER_2, SlimefunItems.PROGRAMMABLE_ANDROID, SlimefunItems.GPS_TRANSMITTER_2,
-                        SlimefunItems.GPS_TRANSMITTER_2, SlimefunItems.STAFF_ELEMENTAL, SlimefunItems.GPS_TRANSMITTER_2,
-                        SlimefunItems.CARGO_MOTOR, SlimefunItems.GPS_TRANSMITTER_2, SlimefunItems.CARGO_MOTOR
+                        null, null, SlimefunItems.BRONZE_INGOT,
+                        null, stick, null,
+                        stick, null, null
                 }
         );
 
@@ -212,7 +209,7 @@ public class StaffSetup implements IManager {
                         "&e最大范围: 64格",
                         "&c选中平面只能由一种方块组成"
                 ),
-                RecipeType.ANCIENT_ALTAR,
+                RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{
                         breakingStaff9.getItem(), breakingStaff9.getItem(), breakingStaff9.getItem(),
                         breakingStaff9.getItem(), SlimefunItems.STAFF_ELEMENTAL, breakingStaff9.getItem(),
