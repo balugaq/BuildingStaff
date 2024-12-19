@@ -69,30 +69,12 @@ public class BuildingStaffPlugin extends JavaPlugin implements SlimefunAddon {
         staffSetup = new StaffSetup(this);
         staffSetup.setup();
 
-        Debug.log("正在加载 Metrics...");
-        loadMetrics();
-
         Debug.log("BuildingStaff 启动成功!");
     }
 
     public void reload() {
         onDisable();
         onEnable();
-    }
-
-    private void loadMetrics() {
-        try {
-            Metrics metrics = new Metrics(this, 49592);
-            boolean enableAutoUpdate = getConfigManager().isAutoUpdate();
-            boolean enableDebug = getConfigManager().isDebug();
-            String autoUpdates = String.valueOf(enableAutoUpdate);
-            String debug = String.valueOf(enableDebug);
-            metrics.addCustomChart(new SimplePie("auto_updates", () -> autoUpdates));
-            metrics.addCustomChart(new SimplePie("debug", () -> debug));
-        } catch (NoClassDefFoundError | NullPointerException | UnsupportedClassVersionError e) {
-            Debug.log("Metrics 加载失败: " + e.getMessage());
-            Debug.log(e);
-        }
     }
 
     @Override

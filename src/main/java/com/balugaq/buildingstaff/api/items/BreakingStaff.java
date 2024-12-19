@@ -344,6 +344,8 @@ public abstract class BreakingStaff extends SlimefunItem implements Staff {
                         || material == Material.SUSPICIOUS_GRAVEL
                         || material == Material.BUBBLE_COLUMN
                         || material == Material.POWDER_SNOW
+                        || material == Material.PISTON
+                        || material == Material.STICKY_PISTON
         ) {
             return true;
         }

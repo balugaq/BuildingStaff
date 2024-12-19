@@ -185,8 +185,6 @@ public abstract class BuildingStaff extends SlimefunItem implements Staff {
                         || material == Material.END_ROD
                         || material == Material.LIGHTNING_ROD
                         || material == Material.CHAIN
-                        || material == Material.PISTON
-                        || material == Material.STICKY_PISTON
                         || material == Material.DAYLIGHT_DETECTOR
                         || material == Material.ENDER_CHEST
                         || material == Material.NOTE_BLOCK
@@ -387,6 +385,8 @@ public abstract class BuildingStaff extends SlimefunItem implements Staff {
                         || material == Material.SUSPICIOUS_GRAVEL
                         || material == Material.BUBBLE_COLUMN
                         || material == Material.POWDER_SNOW
+                        || material == Material.PISTON
+                        || material == Material.STICKY_PISTON
         ) {
             return true;
         }
