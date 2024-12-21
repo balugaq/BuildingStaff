@@ -57,6 +57,8 @@ public class DisplayManager implements IManager {
             group.remove();
         }
         displays.remove(uuid);
+        lookingAt.remove(uuid);
+        lookingFaces.remove(uuid);
     }
 
     public void startShowBlockTask() {

@@ -6,7 +6,7 @@
 
     <groupId>com.balugaq</groupId>
     <artifactId>BuildingStaff</artifactId>
-    <version>20</version>
+    <version>22</version>
     <packaging>jar</packaging>
 
     <name>BuildingStaff</name>

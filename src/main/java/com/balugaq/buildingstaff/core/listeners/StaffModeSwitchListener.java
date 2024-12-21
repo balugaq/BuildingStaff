@@ -1,6 +1,7 @@
 package com.balugaq.buildingstaff.core.listeners;
 
 import com.balugaq.buildingstaff.api.items.Staff;
+import com.balugaq.buildingstaff.implementation.BuildingStaffPlugin;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import org.bukkit.Axis;
 import org.bukkit.ChatColor;
@@ -55,6 +56,7 @@ public class StaffModeSwitchListener implements Listener {
 
             player.getInventory().setItemInMainHand(itemInOffHand);
             event.setCancelled(true);
+            BuildingStaffPlugin.getInstance().getDisplayManager().killDisplays(player.getUniqueId());
             player.sendMessage(ChatColor.GOLD + "方向已切换为: " + (nextAxis == null ? "无" : nextAxis.name()));
             player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0F, 1.0F);
         }
