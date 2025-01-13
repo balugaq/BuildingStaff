@@ -18,6 +18,7 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.block.BlockState;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.EquipmentSlot;
@@ -125,7 +126,7 @@ public abstract class BreakingStaff extends SlimefunItem implements Staff {
                 result.add(location);
             });
 
-            Set<Location> locationsToBreak = new HashSet<>();
+            Set<BlockBreakEvent> locationsToBreak = new HashSet<>();
             for (Location location : result) {
                 if (!Slimefun.getProtectionManager().hasPermission(player, location, Interaction.BREAK_BLOCK)) {
                     continue;
@@ -134,19 +135,30 @@ public abstract class BreakingStaff extends SlimefunItem implements Staff {
                 BlockBreakEvent event = new BlockBreakEvent(location.getBlock(), player);
                 Bukkit.getPluginManager().callEvent(event);
                 if (!event.isCancelled()) {
-                    locationsToBreak.add(location);
+                    locationsToBreak.add(event);
                 }
             }
 
             // I don't know why, but it must be run later, or it will create PlayerInteractEvent AGAIN!
             Bukkit.getScheduler().runTaskLater(getAddon().getJavaPlugin(), () -> {
-                for (Location location : locationsToBreak) {
-                    Block block = location.getBlock();
-                    if (block == null) {
-                        return;
+                for (BlockBreakEvent event : locationsToBreak) {
+                    if (event.isCancelled()) {
+                        continue;
                     }
 
-                    block.breakNaturally();
+                    Block block = event.getBlock();
+                    if (block == null) {
+                        continue;
+                    }
+
+                    if (event.isDropItems()) {
+                        block.breakNaturally();
+                    } else {
+                        block.setType(Material.AIR);
+                    }
+
+                    BlockState state = block.getState();
+                    state.update(true, true);
                 }
             }, 1);
         });

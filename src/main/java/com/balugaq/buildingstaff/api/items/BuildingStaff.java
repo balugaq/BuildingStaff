@@ -387,6 +387,11 @@ public abstract class BuildingStaff extends SlimefunItem implements Staff {
                         || material == Material.POWDER_SNOW
                         || material == Material.PISTON
                         || material == Material.STICKY_PISTON
+                        || material == Material.CONDUIT
+                        || material == Material.MANGROVE_PROPAGULE
+                        || material == materialValueOf("WILDFLOWERS")
+                        || material == materialValueOf("LEAF_LITTER")
+                        || material.name().endsWith("_WALL_FAN")
         ) {
             return true;
         }

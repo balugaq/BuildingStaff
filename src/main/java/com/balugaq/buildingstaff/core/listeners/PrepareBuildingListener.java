@@ -46,7 +46,7 @@ public class PrepareBuildingListener implements Listener {
     }
 
     private void showBuildingBlocksFor(@NotNull Player player, @NotNull Block lookingAtBlock, int limitBlocks, @NotNull BuildingStaff buildingStaff) {
-        if (!Slimefun.getProtectionManager().hasPermission(player, lookingAtBlock, Interaction.PLACE_BLOCK)) {
+        if (!player.isOp() && !Slimefun.getProtectionManager().hasPermission(player, lookingAtBlock, Interaction.PLACE_BLOCK)) {
             return;
         }
         Material material = lookingAtBlock.getType();

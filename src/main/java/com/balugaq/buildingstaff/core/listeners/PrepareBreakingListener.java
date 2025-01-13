@@ -52,7 +52,7 @@ public class PrepareBreakingListener implements Listener {
     }
 
     private void showBreakingBlocksFor(@NotNull Player player, @NotNull Block lookingAtBlock, int limitBlocks, @NotNull BreakingStaff breakingStaff) {
-        if (!Slimefun.getProtectionManager().hasPermission(player, lookingAtBlock, Interaction.BREAK_BLOCK)) {
+        if (!player.isOp() && !Slimefun.getProtectionManager().hasPermission(player, lookingAtBlock, Interaction.BREAK_BLOCK)) {
             return;
         }
 
