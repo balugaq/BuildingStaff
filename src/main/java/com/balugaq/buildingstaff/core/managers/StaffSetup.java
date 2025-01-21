@@ -11,6 +11,7 @@ import com.balugaq.buildingstaff.implementation.items.BreakingStaff9;
 import com.balugaq.buildingstaff.implementation.items.BuildingStaff4096;
 import com.balugaq.buildingstaff.implementation.items.BuildingStaff64;
 import com.balugaq.buildingstaff.implementation.items.BuildingStaff9;
+import com.balugaq.buildingstaff.utils.ItemStackUtil;
 import com.balugaq.buildingstaff.utils.KeyUtil;
 import com.balugaq.buildingstaff.utils.SlimefunItemUtil;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
@@ -58,6 +59,7 @@ public class StaffSetup implements IManager {
     @Override
     public void setup() {
         ItemStack stick = new ItemStack(Material.STICK);
+        ItemStack cc = ItemStackUtil.getCleanItem(SlimefunItems.COMPRESSED_CARBON);
         mainGroup = new ItemGroup(KeyUtil.newKey("building_staff"), new ItemStack(new CustomItemStack(
                 Material.BLAZE_ROD,
                 "&a建筑魔杖"
@@ -77,9 +79,9 @@ public class StaffSetup implements IManager {
                 ),
                 RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{
-                        null, null, SlimefunItems.DAMASCUS_STEEL_INGOT,
-                        null, stick, null,
-                        stick, null, null
+                        cc, cc, SlimefunItems.DAMASCUS_STEEL_INGOT,
+                        cc, stick, cc,
+                        stick, cc, cc
                 }
         );
 
@@ -134,9 +136,9 @@ public class StaffSetup implements IManager {
                 ),
                 RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{
-                        null, null, SlimefunItems.BRASS_INGOT,
-                        null, stick, null,
-                        stick, null, null
+                        cc, cc, SlimefunItems.BRASS_INGOT,
+                        cc, stick, cc,
+                        stick, cc, cc
                 }
         );
 
@@ -191,9 +193,9 @@ public class StaffSetup implements IManager {
                 ),
                 RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{
-                        null, null, SlimefunItems.BRONZE_INGOT,
-                        null, stick, null,
-                        stick, null, null
+                        cc, cc, SlimefunItems.BRONZE_INGOT,
+                        cc, stick, cc,
+                        stick, cc, cc
                 }
         );
 
