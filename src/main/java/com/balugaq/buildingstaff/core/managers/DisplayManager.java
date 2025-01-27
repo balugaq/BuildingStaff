@@ -5,6 +5,7 @@ import com.balugaq.buildingstaff.api.items.BreakingStaff;
 import com.balugaq.buildingstaff.api.items.BuildingStaff;
 import com.balugaq.buildingstaff.api.objects.events.PrepareBreakingEvent;
 import com.balugaq.buildingstaff.api.objects.events.PrepareBuildingEvent;
+import com.balugaq.buildingstaff.utils.Debug;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -88,9 +89,9 @@ public class DisplayManager implements IManager {
 
                 Location location = block.getLocation();
                 if (!lookingAt.containsKey(uuid) || !lookingAt.get(uuid).equals(location) || !lookingFaces.containsKey(uuid) || !lookingFaces.get(uuid).equals(originalFacing)) {
+                    killDisplays(uuid);
                     lookingAt.put(uuid, location);
                     lookingFaces.put(uuid, originalFacing);
-                    killDisplays(uuid);
 
                     SlimefunItem staffLike = SlimefunItem.getByItem(player.getInventory().getItemInMainHand());
                     if (staffLike instanceof BuildingStaff buildingStaff) {

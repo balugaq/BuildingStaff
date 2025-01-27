@@ -3,6 +3,7 @@ package com.balugaq.buildingstaff.core.listeners;
 import com.balugaq.buildingstaff.api.items.BreakingStaff;
 import com.balugaq.buildingstaff.api.objects.events.PrepareBreakingEvent;
 import com.balugaq.buildingstaff.implementation.BuildingStaffPlugin;
+import com.balugaq.buildingstaff.utils.Debug;
 import com.balugaq.buildingstaff.utils.StaffUtil;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
@@ -44,9 +45,7 @@ public class PrepareBreakingListener implements Listener {
         }
 
         Player player = event.getPlayer();
-        if (DEBUG) {
-            player.sendMessage("§cPreparing breaking blocks...");
-        }
+        Debug.debug("§cPreparing breaking blocks...");
         BreakingStaff breakingStaff = event.getBreakingStaff();
         showBreakingBlocksFor(player, event.getLookingAtBlock(), breakingStaff.getLimitBlocks(), breakingStaff);
     }
