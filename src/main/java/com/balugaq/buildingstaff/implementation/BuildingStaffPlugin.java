@@ -8,9 +8,6 @@ import com.balugaq.buildingstaff.core.managers.StaffSetup;
 import com.balugaq.buildingstaff.utils.Debug;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import lombok.Getter;
-import net.guizhanss.guizhanlibplugin.bstats.bukkit.Metrics;
-import net.guizhanss.guizhanlibplugin.bstats.charts.SimplePie;
-import net.guizhanss.guizhanlibplugin.updater.GuizhanUpdater;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 

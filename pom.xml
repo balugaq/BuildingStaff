@@ -6,7 +6,7 @@
 
     <groupId>com.balugaq</groupId>
     <artifactId>BuildingStaff</artifactId>
-    <version>27</version>
+    <version>EN-1</version>
     <packaging>jar</packaging>
 
     <name>BuildingStaff</name>
@@ -84,13 +84,6 @@
             <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
             <version>1.21.1-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-        <!-- Chinese localization library -->
-        <dependency>
-            <groupId>net.guizhanss</groupId>
-            <artifactId>GuizhanLibPlugin</artifactId>
-            <version>1.7.6</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
