@@ -39,37 +39,40 @@ public class BuildingStaffPlugin extends JavaPlugin implements SlimefunAddon {
 
     @Override
     public void onEnable() {
-        Debug.log("正在启动 BuildingStaff...");
+        Debug.log("Enabling BuildingStaff...");
         this.username = "balugaq";
         this.repo = "BuildingStaff";
         this.branch = "master";
 
-        Debug.log("正在加载配置...");
+        Debug.log("Loading config...");
         configManager = new ConfigManager(this);
         configManager.setup();
 
-        Debug.log("正在加载投影管理器...");
+        Debug.log("Loading display manager...");
         displayManager = new DisplayManager(this);
         displayManager.setup();
 
-        Debug.log("正在加载监听器...");
+        Debug.log("Loading listener manager...");
         listenerManager = new ListenerManager(this);
         listenerManager.setup();
 
-        Debug.log("正在加载命令管理器...");
+        Debug.log("Loading command manager...");
         commandManager = new CommandManager(this);
         commandManager.setup();
 
+        /* CN version updater
         if (getServer().getPluginManager().isPluginEnabled("GuizhanLibPlugin")) {
-            Debug.log("正在尝试自动更新...");
+            Debug.log("Trying to update...");
             tryUpdate();
         }
 
-        Debug.log("正在注册 BuildingStaff 物品...");
+         */
+
+        Debug.log("Registering BuildingStaff Items...");
         staffSetup = new StaffSetup(this);
         staffSetup.setup();
 
-        Debug.log("BuildingStaff 启动成功!");
+        Debug.log("BuildingStaff enabled!");
     }
 
     public void reload() {
@@ -88,16 +91,19 @@ public class BuildingStaffPlugin extends JavaPlugin implements SlimefunAddon {
         Debug.log("BuildingStaff 已卸载!");
     }
 
+    /* CN version updater
     public void tryUpdate() {
         try {
             if (configManager.isAutoUpdate() && getDescription().getVersion().startsWith("Build")) {
                 GuizhanUpdater.start(this, getFile(), username, repo, branch);
             }
         } catch (NoClassDefFoundError | NullPointerException | UnsupportedClassVersionError e) {
-            Debug.log("自动更新失败: " + e.getMessage());
+            Debug.log("Failed to update: " + e.getMessage());
             Debug.log(e);
         }
     }
+
+     */
 
     @Override
     @NotNull
