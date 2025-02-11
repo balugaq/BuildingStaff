@@ -45,7 +45,7 @@ public class ClearProjectileCommand extends SubCommand {
                 if (entity instanceof Display display) {
                     List<MetadataValue> metadata = display.getMetadata(BuildingStaffPlugin.getInstance().getName());
                     if (!metadata.isEmpty()) {
-                        if (metadata.getFirst().asBoolean()) {
+                        if (metadata.get(0).asBoolean()) {
                             display.remove();
                         }
                     }
