@@ -7,6 +7,7 @@ import com.balugaq.buildingstaff.core.managers.ListenerManager;
 import com.balugaq.buildingstaff.core.managers.StaffSetup;
 import com.balugaq.buildingstaff.utils.Debug;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.updater.BlobBuildUpdater;
 import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
@@ -57,13 +58,10 @@ public class BuildingStaffPlugin extends JavaPlugin implements SlimefunAddon {
         commandManager = new CommandManager(this);
         commandManager.setup();
 
-        /* CN version updater
-        if (getServer().getPluginManager().isPluginEnabled("GuizhanLibPlugin")) {
-            Debug.log("Trying to update...");
-            tryUpdate();
+        Debug.log("Trying to update...");
+        if (getConfigManager().isAutoUpdate() && getDescription().getVersion().startsWith("DEV - ")) {
+            new BlobBuildUpdater(this, getFile(), "BuildingStaff", "Dev").start();
         }
-
-         */
 
         Debug.log("Registering BuildingStaff Items...");
         staffSetup = new StaffSetup(this);
