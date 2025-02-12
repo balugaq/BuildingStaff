@@ -11,8 +11,8 @@ import com.balugaq.buildingstaff.implementation.items.BreakingStaff9;
 import com.balugaq.buildingstaff.implementation.items.BuildingStaff4096;
 import com.balugaq.buildingstaff.implementation.items.BuildingStaff64;
 import com.balugaq.buildingstaff.implementation.items.BuildingStaff9;
-import com.balugaq.buildingstaff.utils.ItemStackUtil;
 import com.balugaq.buildingstaff.utils.KeyUtil;
+import com.balugaq.buildingstaff.utils.Lang;
 import com.balugaq.buildingstaff.utils.SlimefunItemUtil;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
@@ -71,10 +71,10 @@ public class StaffSetup implements IManager {
                 new SlimefunItemStack(
                         "BUILDING_STAFF_9",
                         new ItemStack(Material.IRON_SWORD),
-                        "&aBuild Staff | &99 Blocks",
-                        "&7Right-click to place blocks",
-                        "&aMax Range: 9 Blocks",
-                        "&aSelected area can be formed by any block"
+                        Lang.getMessage("staff.place9"),
+                        Lang.getMessage("place-block"),
+                        Lang.getMessage("max-range", "range", 9),
+                        Lang.getMessage("any-block")
                 ),
                 RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{
@@ -91,10 +91,10 @@ public class StaffSetup implements IManager {
                 new SlimefunItemStack(
                         "BUILDING_STAFF_64",
                         new ItemStack(Material.GOLDEN_SWORD),
-                        "&aBuild Staff | &664 Blocks",
-                        "&7Right-click to place blocks",
-                        "&eMax Range: 64 Blocks",
-                        "&aSelected area can be formed by any block"
+                        Lang.getMessage("staff.place64"),
+                        Lang.getMessage("place-block"),
+                        Lang.getMessage("max-range", "range", 64),
+                        Lang.getMessage("any-block")
                 ),
                 RecipeType.ANCIENT_ALTAR,
                 new ItemStack[]{
@@ -111,11 +111,11 @@ public class StaffSetup implements IManager {
                 new SlimefunItemStack(
                         "BUILDING_STAFF_4096",
                         new ItemStack(Material.DIAMOND_SWORD),
-                        "&aBuild Staff | &e4096 Blocks",
-                        "&7Right-click to place blocks",
-                        "&cMax Range: 4096 Blocks",
-                        "&aSelected area can be formed by any block",
-                        "&cOP only"
+                        Lang.getMessage("staff.place4096"),
+                        Lang.getMessage("place-block"),
+                        Lang.getMessage("max-range", "range", 4096),
+                        Lang.getMessage("any-block"),
+                        Lang.getMessage("op-only")
                 ),
                 RecipeType.NULL,
                 new ItemStack[]{}
@@ -128,10 +128,10 @@ public class StaffSetup implements IManager {
                 new SlimefunItemStack(
                         "BLOCK_STRICT_BUILDING_STAFF_9",
                         new ItemStack(Material.IRON_SWORD),
-                        "&aBuild Staff | &99 Blocks",
-                        "&7Right-click to place blocks",
-                        "&aMax Range: 9 Blocks",
-                        "&cSelected area can be formed only by one kind of block"
+                        Lang.getMessage("staff.place9"),
+                        Lang.getMessage("place-block"),
+                        Lang.getMessage("max-range", "range", 9),
+                        Lang.getMessage("one-kind-of-block")
                 ),
                 RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{
@@ -148,10 +148,10 @@ public class StaffSetup implements IManager {
                 new SlimefunItemStack(
                         "BLOCK_STRICT_BUILDING_STAFF_64",
                         new ItemStack(Material.GOLDEN_SWORD),
-                        "&aBuild Staff | &664 Blocks",
-                        "&7Right-click to place blocks",
-                        "&eMax Range: 64 Blocks",
-                        "&cSelected area can be formed only by one kind of block"
+                        Lang.getMessage("staff.place64"),
+                        Lang.getMessage("place-block"),
+                        Lang.getMessage("max-range", "range", 64),
+                        Lang.getMessage("one-kind-of-block")
                 ),
                 RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{
@@ -168,11 +168,11 @@ public class StaffSetup implements IManager {
                 new SlimefunItemStack(
                         "BLOCK_STRICT_BUILDING_STAFF_4096",
                         new ItemStack(Material.DIAMOND_SWORD),
-                        "&aBuild Staff | &e4096 Blocks",
-                        "&7Right-click to place blocks",
-                        "&cMax Range: 4096 Blocks",
-                        "&cSelected area can be formed only by one kind of block",
-                        "&cOP only"
+                        Lang.getMessage("staff.place4096"),
+                        Lang.getMessage("place-block"),
+                        Lang.getMessage("max-range", "range", 4096),
+                        Lang.getMessage("one-kind-of-block"),
+                        Lang.getMessage("op-only")
                 ),
                 RecipeType.NULL,
                 new ItemStack[]{}
@@ -185,10 +185,10 @@ public class StaffSetup implements IManager {
                 new SlimefunItemStack(
                         "BREAKING_STAFF_9",
                         new ItemStack(Material.IRON_SWORD),
-                        "&cBreaking Staff | &99 Blocks",
-                        "&7Right-click to break blocks",
-                        "&aMax Range: 9 Blocks",
-                        "&cSelected area can be formed only by one kind of block"
+                        Lang.getMessage("staff.break9"),
+                        Lang.getMessage("break-block"),
+                        Lang.getMessage("max-range", "range", 9),
+                        Lang.getMessage("one-kind-of-block")
                 ),
                 RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{
@@ -205,10 +205,10 @@ public class StaffSetup implements IManager {
                 new SlimefunItemStack(
                         "BREAKING_STAFF_64",
                         new ItemStack(Material.GOLDEN_SWORD),
-                        "&cBreaking Staff | &664 Blocks",
-                        "&7Right-click to break blocks",
-                        "&eMax Range: 64 Blocks",
-                        "&cSelected area can be formed only by one kind of block"
+                        Lang.getMessage("staff.break64"),
+                        Lang.getMessage("break-block"),
+                        Lang.getMessage("max-range", "range", 64),
+                        Lang.getMessage("one-kind-of-block")
                 ),
                 RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{
@@ -225,11 +225,11 @@ public class StaffSetup implements IManager {
                 new SlimefunItemStack(
                         "BREAKING_STAFF_4096",
                         new ItemStack(Material.DIAMOND_SWORD),
-                        "&cBreaking Staff | &e4096 Blocks",
-                        "&7Right-click to break blocks",
-                        "&cMax Range: 4096 Blocks",
-                        "&cSelected area can be formed only by one kind of block",
-                        "&cOP only"
+                        Lang.getMessage("staff.break4096"),
+                        Lang.getMessage("break-block"),
+                        Lang.getMessage("max-range", "range", 4096),
+                        Lang.getMessage("one-kind-of-block"),
+                        Lang.getMessage("op-only")
                 ),
                 RecipeType.NULL,
                 new ItemStack[]{}

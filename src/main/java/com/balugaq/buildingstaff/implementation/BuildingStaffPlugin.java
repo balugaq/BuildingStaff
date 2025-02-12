@@ -5,6 +5,7 @@ import com.balugaq.buildingstaff.core.managers.ConfigManager;
 import com.balugaq.buildingstaff.core.managers.DisplayManager;
 import com.balugaq.buildingstaff.core.managers.ListenerManager;
 import com.balugaq.buildingstaff.core.managers.StaffSetup;
+import com.balugaq.buildingstaff.core.services.LocalizationService;
 import com.balugaq.buildingstaff.utils.Debug;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.updater.BlobBuildUpdater;
@@ -22,6 +23,7 @@ public class BuildingStaffPlugin extends JavaPlugin implements SlimefunAddon {
     private @Getter DisplayManager displayManager;
     private @Getter ListenerManager listenerManager;
     private @Getter StaffSetup staffSetup;
+    private @Getter LocalizationService localizationService;
     private String username;
     private String repo;
     private String branch;
@@ -46,6 +48,11 @@ public class BuildingStaffPlugin extends JavaPlugin implements SlimefunAddon {
         configManager = new ConfigManager(this);
         configManager.setup();
 
+        localizationService = new LocalizationService(this);
+        String language = configManager.getLanguage();
+        localizationService.addLanguage(language);
+        localizationService.addLanguage("en-US");
+
         Debug.log("Loading display manager...");
         displayManager = new DisplayManager(this);
         displayManager.setup();
@@ -60,7 +67,7 @@ public class BuildingStaffPlugin extends JavaPlugin implements SlimefunAddon {
 
         Debug.log("Trying to update...");
         if (getConfigManager().isAutoUpdate() && getDescription().getVersion().startsWith("DEV - ")) {
-            new BlobBuildUpdater(this, getFile(), "BuildingStaff", "Dev").start();
+            new BlobBuildUpdater(this, getFile(), repo, "Dev").start();
         }
 
         Debug.log("Registering BuildingStaff Items...");

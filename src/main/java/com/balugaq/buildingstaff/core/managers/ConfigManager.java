@@ -74,14 +74,17 @@ public class ConfigManager implements IManager {
     }
 
     public boolean isAutoUpdate() {
-        return plugin.getConfig().getBoolean("auto-update");
+        return plugin.getConfig().getBoolean("auto-update", false);
     }
 
     public boolean isDebug() {
-        return plugin.getConfig().getBoolean("debug");
+        return plugin.getConfig().getBoolean("debug", false);
     }
 
     public boolean isDisplayProjection() {
-        return plugin.getConfig().getBoolean("display-projection");
+        return plugin.getConfig().getBoolean("display-projection", true);
+    }
+    public String getLanguage() {
+        return plugin.getConfig().getString("language", "en-US");
     }
 }
