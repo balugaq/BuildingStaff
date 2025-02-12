@@ -59,10 +59,9 @@ public class StaffSetup implements IManager {
     @Override
     public void setup() {
         ItemStack stick = new ItemStack(Material.STICK);
-        ItemStack cc = ItemStackUtil.getCleanItem(SlimefunItems.COMPRESSED_CARBON);
         mainGroup = new ItemGroup(KeyUtil.newKey("building_staff"), new ItemStack(new CustomItemStack(
                 Material.BLAZE_ROD,
-                "&a建筑魔杖"
+                "&aBuilding Staff"
         )));
 
         mainGroup.register(plugin);
@@ -72,16 +71,16 @@ public class StaffSetup implements IManager {
                 new SlimefunItemStack(
                         "BUILDING_STAFF_9",
                         new ItemStack(Material.IRON_SWORD),
-                        "&a建筑魔杖 | &99格",
-                        "&7右键以放置方块",
-                        "&a最大范围: 9格",
-                        "&a选中平面可由任意方块组成"
+                        "&aBuild Staff | &99 Blocks",
+                        "&7Right-click to place blocks",
+                        "&aMax Range: 9 Blocks",
+                        "&aSelected area can be formed by any block"
                 ),
                 RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{
-                        cc, cc, SlimefunItems.DAMASCUS_STEEL_INGOT,
-                        cc, stick, cc,
-                        stick, cc, cc
+                        SlimefunItems.COMPRESSED_CARBON, SlimefunItems.COMPRESSED_CARBON, SlimefunItems.DAMASCUS_STEEL_INGOT,
+                        SlimefunItems.COMPRESSED_CARBON, stick, SlimefunItems.COMPRESSED_CARBON,
+                        stick, SlimefunItems.COMPRESSED_CARBON, SlimefunItems.COMPRESSED_CARBON
                 }
         );
 
@@ -92,10 +91,10 @@ public class StaffSetup implements IManager {
                 new SlimefunItemStack(
                         "BUILDING_STAFF_64",
                         new ItemStack(Material.GOLDEN_SWORD),
-                        "&a建筑魔杖 | &664格",
-                        "&7右键以放置方块",
-                        "&e最大范围: 64格",
-                        "&a选中平面可由任意方块组成"
+                        "&aBuild Staff | &664 Blocks",
+                        "&7Right-click to place blocks",
+                        "&eMax Range: 64 Blocks",
+                        "&aSelected area can be formed by any block"
                 ),
                 RecipeType.ANCIENT_ALTAR,
                 new ItemStack[]{
@@ -112,11 +111,11 @@ public class StaffSetup implements IManager {
                 new SlimefunItemStack(
                         "BUILDING_STAFF_4096",
                         new ItemStack(Material.DIAMOND_SWORD),
-                        "&a建筑魔杖 | &e4096格",
-                        "&7右键以放置方块",
-                        "&c最大范围: 4096格",
-                        "&a选中平面可由任意方块组成",
-                        "&c仅限管理员使用"
+                        "&aBuild Staff | &e4096 Blocks",
+                        "&7Right-click to place blocks",
+                        "&cMax Range: 4096 Blocks",
+                        "&aSelected area can be formed by any block",
+                        "&cOP only"
                 ),
                 RecipeType.NULL,
                 new ItemStack[]{}
@@ -129,16 +128,16 @@ public class StaffSetup implements IManager {
                 new SlimefunItemStack(
                         "BLOCK_STRICT_BUILDING_STAFF_9",
                         new ItemStack(Material.IRON_SWORD),
-                        "&a建筑魔杖 | &99格",
-                        "&7右键以放置方块",
-                        "&a最大范围: 9格",
-                        "&c选中平面只能由一种方块组成"
+                        "&aBuild Staff | &99 Blocks",
+                        "&7Right-click to place blocks",
+                        "&aMax Range: 9 Blocks",
+                        "&cSelected area can be formed only by one kind of block"
                 ),
                 RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{
-                        cc, cc, SlimefunItems.BRASS_INGOT,
-                        cc, stick, cc,
-                        stick, cc, cc
+                        SlimefunItems.COMPRESSED_CARBON, SlimefunItems.COMPRESSED_CARBON, SlimefunItems.BRASS_INGOT,
+                        SlimefunItems.COMPRESSED_CARBON, stick, SlimefunItems.COMPRESSED_CARBON,
+                        stick, SlimefunItems.COMPRESSED_CARBON, SlimefunItems.COMPRESSED_CARBON
                 }
         );
 
@@ -149,10 +148,10 @@ public class StaffSetup implements IManager {
                 new SlimefunItemStack(
                         "BLOCK_STRICT_BUILDING_STAFF_64",
                         new ItemStack(Material.GOLDEN_SWORD),
-                        "&a建筑魔杖 | &664格",
-                        "&7右键以放置方块",
-                        "&e最大范围: 64格",
-                        "&c选中平面只能由一种方块组成"
+                        "&aBuild Staff | &664 Blocks",
+                        "&7Right-click to place blocks",
+                        "&eMax Range: 64 Blocks",
+                        "&cSelected area can be formed only by one kind of block"
                 ),
                 RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{
@@ -169,11 +168,11 @@ public class StaffSetup implements IManager {
                 new SlimefunItemStack(
                         "BLOCK_STRICT_BUILDING_STAFF_4096",
                         new ItemStack(Material.DIAMOND_SWORD),
-                        "&a建筑魔杖 | &e4096格",
-                        "&7右键以放置方块",
-                        "&c最大范围: 4096格",
-                        "&c选中平面只能由一种方块组成",
-                        "&c仅限管理员使用"
+                        "&aBuild Staff | &e4096 Blocks",
+                        "&7Right-click to place blocks",
+                        "&cMax Range: 4096 Blocks",
+                        "&cSelected area can be formed only by one kind of block",
+                        "&cOP only"
                 ),
                 RecipeType.NULL,
                 new ItemStack[]{}
@@ -186,16 +185,16 @@ public class StaffSetup implements IManager {
                 new SlimefunItemStack(
                         "BREAKING_STAFF_9",
                         new ItemStack(Material.IRON_SWORD),
-                        "&c破坏魔杖 | &99格",
-                        "&7右键以破坏方块",
-                        "&a最大范围: 9格",
-                        "&c选中平面只能由一种方块组成"
+                        "&cBreaking Staff | &99 Blocks",
+                        "&7Right-click to break blocks",
+                        "&aMax Range: 9 Blocks",
+                        "&cSelected area can be formed only by one kind of block"
                 ),
                 RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{
-                        cc, cc, SlimefunItems.BRONZE_INGOT,
-                        cc, stick, cc,
-                        stick, cc, cc
+                        SlimefunItems.COMPRESSED_CARBON, SlimefunItems.COMPRESSED_CARBON, SlimefunItems.BRONZE_INGOT,
+                        SlimefunItems.COMPRESSED_CARBON, stick, SlimefunItems.COMPRESSED_CARBON,
+                        stick, SlimefunItems.COMPRESSED_CARBON, SlimefunItems.COMPRESSED_CARBON
                 }
         );
 
@@ -206,10 +205,10 @@ public class StaffSetup implements IManager {
                 new SlimefunItemStack(
                         "BREAKING_STAFF_64",
                         new ItemStack(Material.GOLDEN_SWORD),
-                        "&c破坏魔杖 | &664格",
-                        "&7右键以破坏方块",
-                        "&e最大范围: 64格",
-                        "&c选中平面只能由一种方块组成"
+                        "&cBreaking Staff | &664 Blocks",
+                        "&7Right-click to break blocks",
+                        "&eMax Range: 64 Blocks",
+                        "&cSelected area can be formed only by one kind of block"
                 ),
                 RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{
@@ -226,11 +225,11 @@ public class StaffSetup implements IManager {
                 new SlimefunItemStack(
                         "BREAKING_STAFF_4096",
                         new ItemStack(Material.DIAMOND_SWORD),
-                        "&c破坏魔杖 | &e4096格",
-                        "&7右键以破坏方块",
-                        "&c最大范围: 4096格",
-                        "&c选中平面只能由一种方块组成",
-                        "&c仅限管理员使用"
+                        "&cBreaking Staff | &e4096 Blocks",
+                        "&7Right-click to break blocks",
+                        "&cMax Range: 4096 Blocks",
+                        "&cSelected area can be formed only by one kind of block",
+                        "&cOP only"
                 ),
                 RecipeType.NULL,
                 new ItemStack[]{}

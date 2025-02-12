@@ -50,14 +50,14 @@ public class StaffModeSwitchListener implements Listener {
             }
 
             List<String> lore = new ArrayList<>(defaultLore);
-            lore.add(ChatColor.GOLD + "方向严格: " + (nextAxis == null ? "无" : nextAxis.name()));
+            lore.add(ChatColor.GOLD + "Axis strict: " + (nextAxis == null ? "None" : nextAxis.name()));
             meta.setLore(lore);
             itemInOffHand.setItemMeta(meta);
 
             player.getInventory().setItemInMainHand(itemInOffHand);
             event.setCancelled(true);
             BuildingStaffPlugin.getInstance().getDisplayManager().killDisplays(player.getUniqueId());
-            player.sendMessage(ChatColor.GOLD + "方向已切换为: " + (nextAxis == null ? "无" : nextAxis.name()));
+            player.sendMessage(ChatColor.GOLD + "Axis switched to: " + (nextAxis == null ? "None" : nextAxis.name()));
             player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0F, 1.0F);
         }
     }
