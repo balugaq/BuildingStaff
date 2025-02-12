@@ -47,6 +47,9 @@ public class PrepareBreakingListener implements Listener {
         Player player = event.getPlayer();
         Debug.debug("Preparing breaking blocks...");
         BreakingStaff breakingStaff = event.getBreakingStaff();
+        if (breakingStaff.isOpOnly() && !player.isOp()) {
+            return;
+        }
         showBreakingBlocksFor(player, event.getLookingAtBlock(), breakingStaff.getLimitBlocks(), breakingStaff);
     }
 
