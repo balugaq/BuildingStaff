@@ -59,7 +59,6 @@ public class StaffSetup implements IManager {
     @Override
     public void setup() {
         ItemStack stick = new ItemStack(Material.STICK);
-        ItemStack cc = ItemStackUtil.getCleanItem(SlimefunItems.COMPRESSED_CARBON);
         mainGroup = new ItemGroup(KeyUtil.newKey("building_staff"), new ItemStack(new CustomItemStack(
                 Material.BLAZE_ROD,
                 "&aBuilding Staff"
@@ -79,9 +78,9 @@ public class StaffSetup implements IManager {
                 ),
                 RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{
-                        cc, cc, SlimefunItems.DAMASCUS_STEEL_INGOT,
-                        cc, stick, cc,
-                        stick, cc, cc
+                        SlimefunItems.COMPRESSED_CARBON, SlimefunItems.COMPRESSED_CARBON, SlimefunItems.DAMASCUS_STEEL_INGOT,
+                        SlimefunItems.COMPRESSED_CARBON, stick, SlimefunItems.COMPRESSED_CARBON,
+                        stick, SlimefunItems.COMPRESSED_CARBON, SlimefunItems.COMPRESSED_CARBON
                 }
         );
 
@@ -136,9 +135,9 @@ public class StaffSetup implements IManager {
                 ),
                 RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{
-                        cc, cc, SlimefunItems.BRASS_INGOT,
-                        cc, stick, cc,
-                        stick, cc, cc
+                        SlimefunItems.COMPRESSED_CARBON, SlimefunItems.COMPRESSED_CARBON, SlimefunItems.BRASS_INGOT,
+                        SlimefunItems.COMPRESSED_CARBON, stick, SlimefunItems.COMPRESSED_CARBON,
+                        stick, SlimefunItems.COMPRESSED_CARBON, SlimefunItems.COMPRESSED_CARBON
                 }
         );
 
@@ -193,9 +192,9 @@ public class StaffSetup implements IManager {
                 ),
                 RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{
-                        cc, cc, SlimefunItems.BRONZE_INGOT,
-                        cc, stick, cc,
-                        stick, cc, cc
+                        SlimefunItems.COMPRESSED_CARBON, SlimefunItems.COMPRESSED_CARBON, SlimefunItems.BRONZE_INGOT,
+                        SlimefunItems.COMPRESSED_CARBON, stick, SlimefunItems.COMPRESSED_CARBON,
+                        stick, SlimefunItems.COMPRESSED_CARBON, SlimefunItems.COMPRESSED_CARBON
                 }
         );
 
