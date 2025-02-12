@@ -40,7 +40,7 @@ public class BuildingStaffPlugin extends JavaPlugin implements SlimefunAddon {
         Debug.log("Enabling BuildingStaff...");
         this.username = "balugaq";
         this.repo = "BuildingStaff";
-        this.branch = "master";
+        this.branch = "en-master";
 
         Debug.log("Loading config...");
         configManager = new ConfigManager(this);
@@ -77,28 +77,14 @@ public class BuildingStaffPlugin extends JavaPlugin implements SlimefunAddon {
 
     @Override
     public void onDisable() {
-        Debug.log("正在卸载 BuildingStaff...");
+        Debug.log("Disabling BuildingStaff...");
         staffSetup.shutdown();
         displayManager.shutdown();
         listenerManager.shutdown();
         commandManager.shutdown();
         configManager.shutdown();
-        Debug.log("BuildingStaff 已卸载!");
+        Debug.log("Disabled BuildingStaff!");
     }
-
-    /* CN version updater
-    public void tryUpdate() {
-        try {
-            if (configManager.isAutoUpdate() && getDescription().getVersion().startsWith("Build")) {
-                GuizhanUpdater.start(this, getFile(), username, repo, branch);
-            }
-        } catch (NoClassDefFoundError | NullPointerException | UnsupportedClassVersionError e) {
-            Debug.log("Failed to update: " + e.getMessage());
-            Debug.log(e);
-        }
-    }
-
-     */
 
     @Override
     @NotNull
