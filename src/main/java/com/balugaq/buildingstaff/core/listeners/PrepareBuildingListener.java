@@ -41,6 +41,9 @@ public class PrepareBuildingListener implements Listener {
         Player player = event.getPlayer();
         Debug.debug("Preparing building blocks...");
         BuildingStaff buildingStaff = event.getBuildingStaff();
+        if (buildingStaff.isOpOnly() && !player.isOp()) {
+            return;
+        }
         showBuildingBlocksFor(player, event.getLookingAtBlock(), buildingStaff.getLimitBlocks(), event.getBuildingStaff());
     }
 
