@@ -14,6 +14,7 @@ import com.balugaq.buildingstaff.implementation.items.BuildingStaff9;
 import com.balugaq.buildingstaff.utils.ItemStackUtil;
 import com.balugaq.buildingstaff.utils.KeyUtil;
 import com.balugaq.buildingstaff.utils.SlimefunItemUtil;
+import com.balugaq.buildingstaff.utils.compatibility.Converter;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -60,10 +61,10 @@ public class StaffSetup implements IManager {
     public void setup() {
         ItemStack stick = new ItemStack(Material.STICK);
         ItemStack cc = ItemStackUtil.getCleanItem(SlimefunItems.COMPRESSED_CARBON);
-        mainGroup = new ItemGroup(KeyUtil.newKey("building_staff"), new ItemStack(new CustomItemStack(
+        mainGroup = new ItemGroup(KeyUtil.newKey("building_staff"), Converter.getItem(
                 Material.BLAZE_ROD,
                 "&a建筑魔杖"
-        )));
+        ));
 
         mainGroup.register(plugin);
 
