@@ -11,8 +11,8 @@ import com.balugaq.buildingstaff.implementation.items.BreakingStaff9;
 import com.balugaq.buildingstaff.implementation.items.BuildingStaff4096;
 import com.balugaq.buildingstaff.implementation.items.BuildingStaff64;
 import com.balugaq.buildingstaff.implementation.items.BuildingStaff9;
-import com.balugaq.buildingstaff.utils.ItemStackUtil;
 import com.balugaq.buildingstaff.utils.KeyUtil;
+import com.balugaq.buildingstaff.utils.Lang;
 import com.balugaq.buildingstaff.utils.SlimefunItemUtil;
 import com.balugaq.buildingstaff.utils.compatibility.Converter;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
@@ -60,11 +60,12 @@ public class StaffSetup implements IManager {
     @Override
     public void setup() {
         ItemStack stick = new ItemStack(Material.STICK);
-        ItemStack cc = ItemStackUtil.getCleanItem(SlimefunItems.COMPRESSED_CARBON);
+
         mainGroup = new ItemGroup(KeyUtil.newKey("building_staff"), Converter.getItem(
                 Material.BLAZE_ROD,
-                "&a建筑魔杖"
+                "&aBuilding Staff"
         ));
+
 
         mainGroup.register(plugin);
 
@@ -73,16 +74,16 @@ public class StaffSetup implements IManager {
                 new SlimefunItemStack(
                         "BUILDING_STAFF_9",
                         new ItemStack(Material.IRON_SWORD),
-                        "&a建筑魔杖 | &99格",
-                        "&7右键以放置方块",
-                        "&a最大范围: 9格",
-                        "&a选中平面可由任意方块组成"
+                        Lang.getMessage("staff.place9"),
+                        Lang.getMessage("place-block"),
+                        Lang.getMessage("max-range", "range", 9),
+                        Lang.getMessage("any-block")
                 ),
                 RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{
-                        cc, cc, SlimefunItems.DAMASCUS_STEEL_INGOT,
-                        cc, stick, cc,
-                        stick, cc, cc
+                        SlimefunItems.COMPRESSED_CARBON, SlimefunItems.COMPRESSED_CARBON, SlimefunItems.DAMASCUS_STEEL_INGOT,
+                        SlimefunItems.COMPRESSED_CARBON, stick, SlimefunItems.COMPRESSED_CARBON,
+                        stick, SlimefunItems.COMPRESSED_CARBON, SlimefunItems.COMPRESSED_CARBON
                 }
         );
 
@@ -93,10 +94,10 @@ public class StaffSetup implements IManager {
                 new SlimefunItemStack(
                         "BUILDING_STAFF_64",
                         new ItemStack(Material.GOLDEN_SWORD),
-                        "&a建筑魔杖 | &664格",
-                        "&7右键以放置方块",
-                        "&e最大范围: 64格",
-                        "&a选中平面可由任意方块组成"
+                        Lang.getMessage("staff.place64"),
+                        Lang.getMessage("place-block"),
+                        Lang.getMessage("max-range", "range", 64),
+                        Lang.getMessage("any-block")
                 ),
                 RecipeType.ANCIENT_ALTAR,
                 new ItemStack[]{
@@ -113,11 +114,11 @@ public class StaffSetup implements IManager {
                 new SlimefunItemStack(
                         "BUILDING_STAFF_4096",
                         new ItemStack(Material.DIAMOND_SWORD),
-                        "&a建筑魔杖 | &e4096格",
-                        "&7右键以放置方块",
-                        "&c最大范围: 4096格",
-                        "&a选中平面可由任意方块组成",
-                        "&c仅限管理员使用"
+                        Lang.getMessage("staff.place4096"),
+                        Lang.getMessage("place-block"),
+                        Lang.getMessage("max-range", "range", 4096),
+                        Lang.getMessage("any-block"),
+                        Lang.getMessage("op-only")
                 ),
                 RecipeType.NULL,
                 new ItemStack[]{}
@@ -130,16 +131,16 @@ public class StaffSetup implements IManager {
                 new SlimefunItemStack(
                         "BLOCK_STRICT_BUILDING_STAFF_9",
                         new ItemStack(Material.IRON_SWORD),
-                        "&a建筑魔杖 | &99格",
-                        "&7右键以放置方块",
-                        "&a最大范围: 9格",
-                        "&c选中平面只能由一种方块组成"
+                        Lang.getMessage("staff.place9"),
+                        Lang.getMessage("place-block"),
+                        Lang.getMessage("max-range", "range", 9),
+                        Lang.getMessage("one-kind-of-block")
                 ),
                 RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{
-                        cc, cc, SlimefunItems.BRASS_INGOT,
-                        cc, stick, cc,
-                        stick, cc, cc
+                        SlimefunItems.COMPRESSED_CARBON, SlimefunItems.COMPRESSED_CARBON, SlimefunItems.BRASS_INGOT,
+                        SlimefunItems.COMPRESSED_CARBON, stick, SlimefunItems.COMPRESSED_CARBON,
+                        stick, SlimefunItems.COMPRESSED_CARBON, SlimefunItems.COMPRESSED_CARBON
                 }
         );
 
@@ -150,10 +151,10 @@ public class StaffSetup implements IManager {
                 new SlimefunItemStack(
                         "BLOCK_STRICT_BUILDING_STAFF_64",
                         new ItemStack(Material.GOLDEN_SWORD),
-                        "&a建筑魔杖 | &664格",
-                        "&7右键以放置方块",
-                        "&e最大范围: 64格",
-                        "&c选中平面只能由一种方块组成"
+                        Lang.getMessage("staff.place64"),
+                        Lang.getMessage("place-block"),
+                        Lang.getMessage("max-range", "range", 64),
+                        Lang.getMessage("one-kind-of-block")
                 ),
                 RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{
@@ -170,11 +171,11 @@ public class StaffSetup implements IManager {
                 new SlimefunItemStack(
                         "BLOCK_STRICT_BUILDING_STAFF_4096",
                         new ItemStack(Material.DIAMOND_SWORD),
-                        "&a建筑魔杖 | &e4096格",
-                        "&7右键以放置方块",
-                        "&c最大范围: 4096格",
-                        "&c选中平面只能由一种方块组成",
-                        "&c仅限管理员使用"
+                        Lang.getMessage("staff.place4096"),
+                        Lang.getMessage("place-block"),
+                        Lang.getMessage("max-range", "range", 4096),
+                        Lang.getMessage("one-kind-of-block"),
+                        Lang.getMessage("op-only")
                 ),
                 RecipeType.NULL,
                 new ItemStack[]{}
@@ -187,16 +188,16 @@ public class StaffSetup implements IManager {
                 new SlimefunItemStack(
                         "BREAKING_STAFF_9",
                         new ItemStack(Material.IRON_SWORD),
-                        "&c破坏魔杖 | &99格",
-                        "&7右键以破坏方块",
-                        "&a最大范围: 9格",
-                        "&c选中平面只能由一种方块组成"
+                        Lang.getMessage("staff.break9"),
+                        Lang.getMessage("break-block"),
+                        Lang.getMessage("max-range", "range", 9),
+                        Lang.getMessage("one-kind-of-block")
                 ),
                 RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{
-                        cc, cc, SlimefunItems.BRONZE_INGOT,
-                        cc, stick, cc,
-                        stick, cc, cc
+                        SlimefunItems.COMPRESSED_CARBON, SlimefunItems.COMPRESSED_CARBON, SlimefunItems.BRONZE_INGOT,
+                        SlimefunItems.COMPRESSED_CARBON, stick, SlimefunItems.COMPRESSED_CARBON,
+                        stick, SlimefunItems.COMPRESSED_CARBON, SlimefunItems.COMPRESSED_CARBON
                 }
         );
 
@@ -207,10 +208,10 @@ public class StaffSetup implements IManager {
                 new SlimefunItemStack(
                         "BREAKING_STAFF_64",
                         new ItemStack(Material.GOLDEN_SWORD),
-                        "&c破坏魔杖 | &664格",
-                        "&7右键以破坏方块",
-                        "&e最大范围: 64格",
-                        "&c选中平面只能由一种方块组成"
+                        Lang.getMessage("staff.break64"),
+                        Lang.getMessage("break-block"),
+                        Lang.getMessage("max-range", "range", 64),
+                        Lang.getMessage("one-kind-of-block")
                 ),
                 RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{
@@ -227,11 +228,11 @@ public class StaffSetup implements IManager {
                 new SlimefunItemStack(
                         "BREAKING_STAFF_4096",
                         new ItemStack(Material.DIAMOND_SWORD),
-                        "&c破坏魔杖 | &e4096格",
-                        "&7右键以破坏方块",
-                        "&c最大范围: 4096格",
-                        "&c选中平面只能由一种方块组成",
-                        "&c仅限管理员使用"
+                        Lang.getMessage("staff.break4096"),
+                        Lang.getMessage("break-block"),
+                        Lang.getMessage("max-range", "range", 4096),
+                        Lang.getMessage("one-kind-of-block"),
+                        Lang.getMessage("op-only")
                 ),
                 RecipeType.NULL,
                 new ItemStack[]{}

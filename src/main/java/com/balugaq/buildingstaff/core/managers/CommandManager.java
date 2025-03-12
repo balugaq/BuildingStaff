@@ -5,6 +5,7 @@ import com.balugaq.buildingstaff.core.commands.SubCommand;
 import com.balugaq.buildingstaff.core.commands.list.ClearProjectileCommand;
 import com.balugaq.buildingstaff.core.commands.list.ReloadCommand;
 import com.balugaq.buildingstaff.implementation.BuildingStaffPlugin;
+import com.balugaq.buildingstaff.utils.Lang;
 import lombok.Getter;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -48,12 +49,12 @@ public class CommandManager implements TabExecutor, IManager {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
         if (!sender.isOp()) {
-            sender.sendMessage("You don't have permission to use this command.");
+            sender.sendMessage(Lang.getCommandMessage("no-permission"));
             return false;
         }
 
         if (args.length == 0) {
-            sender.sendMessage("Usage: /buildingstaff <subcommand>");
+            sender.sendMessage(Lang.getCommandMessage("usage"));
             return false;
         }
 
@@ -65,7 +66,7 @@ public class CommandManager implements TabExecutor, IManager {
             }
         }
 
-        sender.sendMessage("Subcommand not found.");
+        sender.sendMessage(Lang.getCommandMessage("not-found"));
         return false;
     }
 
