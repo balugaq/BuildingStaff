@@ -2,6 +2,7 @@ package com.balugaq.buildingstaff.core.commands.list;
 
 import com.balugaq.buildingstaff.core.commands.SubCommand;
 import com.balugaq.buildingstaff.implementation.BuildingStaffPlugin;
+import com.balugaq.buildingstaff.utils.Lang;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
@@ -31,7 +32,7 @@ public class ReloadCommand extends SubCommand {
         BuildingStaffPlugin plugin = getPlugin();
         if (plugin.isEnabled()) {
             plugin.reload();
-            sender.sendMessage("Plugin reloaded.");
+            sender.sendMessage(Lang.getCommandMessage("reload", "success"));
         }
 
         return true;

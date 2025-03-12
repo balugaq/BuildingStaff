@@ -1,0 +1,24 @@
+message:
+  command:
+    not-found: "Subcommand not found."
+    no-permission: "You don't have permission to use this command."
+    usage: "Usage: /buildingstaff <subcommand>"
+    reload:
+      success: "Plugin reloaded."
+    clear-projectile:
+      success: "All projectiles have been cleared."
+  place-block: "&7Right-click to place blocks"
+  break-block: "&7Right-click to break blocks"
+  max-range: "&eMax Range: {range} Blocks"
+  any-block: "&aSelected area can be formed by any block"
+  one-kind-of-block: "&cSelected area can be formed only by one kind of block"
+  op-only: "&cOP only"
+  staff:
+    place9: "&aBuild Staff | &99 Blocks"
+    place64: "&aBuild Staff | &664 Blocks"
+    place4096: "&aBuild Staff | &e4096 Blocks"
+    break9: "&cBreaking Staff | &99 Blocks"
+    break64: "&cBreaking Staff | &664 Blocks"
+    break4096: "&cBreaking Staff | &e4096 Blocks"
+  axis-strict-lore: "&6Axis strict: {axis}"
+  axis-strict-message: "&6Axis switched to: {axis}"
