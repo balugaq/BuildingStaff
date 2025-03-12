@@ -5,11 +5,12 @@ import com.balugaq.buildingstaff.core.managers.ConfigManager;
 import com.balugaq.buildingstaff.core.managers.DisplayManager;
 import com.balugaq.buildingstaff.core.managers.ListenerManager;
 import com.balugaq.buildingstaff.core.managers.StaffSetup;
-import com.balugaq.buildingstaff.core.services.LocalizationService;
 import com.balugaq.buildingstaff.utils.Debug;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.updater.BlobBuildUpdater;
 import lombok.Getter;
+import net.guizhanss.guizhanlibplugin.bstats.bukkit.Metrics;
+import net.guizhanss.guizhanlibplugin.bstats.charts.SimplePie;
+import net.guizhanss.guizhanlibplugin.updater.GuizhanUpdater;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
@@ -23,7 +24,6 @@ public class BuildingStaffPlugin extends JavaPlugin implements SlimefunAddon {
     private @Getter DisplayManager displayManager;
     private @Getter ListenerManager listenerManager;
     private @Getter StaffSetup staffSetup;
-    private @Getter LocalizationService localizationService;
     private String username;
     private String repo;
     private String branch;
@@ -39,42 +39,37 @@ public class BuildingStaffPlugin extends JavaPlugin implements SlimefunAddon {
 
     @Override
     public void onEnable() {
-        Debug.log("Enabling BuildingStaff...");
+        Debug.log("正在启动 BuildingStaff...");
         this.username = "balugaq";
         this.repo = "BuildingStaff";
-        this.branch = "en-master";
+        this.branch = "master";
 
-        Debug.log("Loading config...");
+        Debug.log("正在加载配置...");
         configManager = new ConfigManager(this);
         configManager.setup();
 
-        localizationService = new LocalizationService(this);
-        String language = configManager.getLanguage();
-        localizationService.addLanguage(language);
-        localizationService.addLanguage("en-US");
-
-        Debug.log("Loading display manager...");
+        Debug.log("正在加载投影管理器...");
         displayManager = new DisplayManager(this);
         displayManager.setup();
 
-        Debug.log("Loading listener manager...");
+        Debug.log("正在加载监听器...");
         listenerManager = new ListenerManager(this);
         listenerManager.setup();
 
-        Debug.log("Loading command manager...");
+        Debug.log("正在加载命令管理器...");
         commandManager = new CommandManager(this);
         commandManager.setup();
 
-        Debug.log("Trying to update...");
-        if (getConfigManager().isAutoUpdate() && getDescription().getVersion().startsWith("DEV - ")) {
-            new BlobBuildUpdater(this, getFile(), repo, "Dev").start();
+        if (getServer().getPluginManager().isPluginEnabled("GuizhanLibPlugin")) {
+            Debug.log("正在尝试自动更新...");
+            tryUpdate();
         }
 
-        Debug.log("Registering BuildingStaff Items...");
+        Debug.log("正在注册 BuildingStaff 物品...");
         staffSetup = new StaffSetup(this);
         staffSetup.setup();
 
-        Debug.log("BuildingStaff enabled!");
+        Debug.log("BuildingStaff 启动成功!");
     }
 
     public void reload() {
@@ -84,13 +79,24 @@ public class BuildingStaffPlugin extends JavaPlugin implements SlimefunAddon {
 
     @Override
     public void onDisable() {
-        Debug.log("Disabling BuildingStaff...");
+        Debug.log("正在卸载 BuildingStaff...");
         staffSetup.shutdown();
         displayManager.shutdown();
         listenerManager.shutdown();
         commandManager.shutdown();
         configManager.shutdown();
-        Debug.log("Disabled BuildingStaff!");
+        Debug.log("BuildingStaff 已卸载!");
+    }
+
+    public void tryUpdate() {
+        try {
+            if (configManager.isAutoUpdate() && getDescription().getVersion().startsWith("Build")) {
+                GuizhanUpdater.start(this, getFile(), username, repo, branch);
+            }
+        } catch (NoClassDefFoundError | NullPointerException | UnsupportedClassVersionError e) {
+            Debug.log("自动更新失败: " + e.getMessage());
+            Debug.log(e);
+        }
     }
 
     @Override

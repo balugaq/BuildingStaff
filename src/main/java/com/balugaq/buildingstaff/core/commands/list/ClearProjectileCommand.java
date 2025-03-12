@@ -2,7 +2,6 @@ package com.balugaq.buildingstaff.core.commands.list;
 
 import com.balugaq.buildingstaff.core.commands.SubCommand;
 import com.balugaq.buildingstaff.implementation.BuildingStaffPlugin;
-import com.balugaq.buildingstaff.utils.Lang;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Display;
@@ -46,7 +45,7 @@ public class ClearProjectileCommand extends SubCommand {
                 if (entity instanceof Display display) {
                     List<MetadataValue> metadata = display.getMetadata(BuildingStaffPlugin.getInstance().getName());
                     if (!metadata.isEmpty()) {
-                        if (metadata.get(0).asBoolean()) {
+                        if (metadata.getFirst().asBoolean()) {
                             display.remove();
                         }
                     }
@@ -54,7 +53,7 @@ public class ClearProjectileCommand extends SubCommand {
             });
         }
 
-        sender.sendMessage(Lang.getCommandMessage("clear-projectile", "success"));
+        sender.sendMessage("All projectiles have been cleared.");
 
         return true;
     }
