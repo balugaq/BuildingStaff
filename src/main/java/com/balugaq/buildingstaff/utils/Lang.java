@@ -2,7 +2,7 @@ package com.balugaq.buildingstaff.utils;
 
 import com.balugaq.buildingstaff.core.services.LocalizationService;
 import com.balugaq.buildingstaff.implementation.BuildingStaffPlugin;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
+import com.balugaq.buildingstaff.utils.compatibility.Converter;
 import lombok.experimental.UtilityClass;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -118,25 +118,25 @@ public class Lang {
     public static @NotNull ItemStack getIcon(String path, Material material) {
         String iconName = getString("icon." + path + ".name");
         String[] iconLore = getStringArray("icon." + path + ".lore");
-        return new CustomItemStack(material, iconName, iconLore);
+        return Converter.getItem(material, iconName, iconLore);
     }
 
     public static @NotNull ItemStack getIcon(String path, Material material, Object... args) {
         String iconName = getString("icon." + path + ".name", args);
         String[] iconLore = getStringArray("icon." + path + ".lore", args);
-        return new CustomItemStack(material, iconName, iconLore);
+        return Converter.getItem(material, iconName, iconLore);
     }
 
     public static @NotNull ItemStack getGuideGroupIcon(String path, Material material) {
         String iconName = getString("icon.guide-group." + path + ".name");
         String[] iconLore = getStringArray("icon.guide-group." + path + ".lore");
-        return new CustomItemStack(material, iconName, iconLore);
+        return Converter.getItem(material, iconName, iconLore);
     }
 
     public static @NotNull ItemStack getGuideGroupIcon(String path, Material material, Object... args) {
         String iconName = getString("icon.guide-group." + path + ".name", args);
         String[] iconLore = getStringArray("icon.guide-group." + path + ".lore", args);
-        return new CustomItemStack(material, iconName, iconLore);
+        return Converter.getItem(material, iconName, iconLore);
     }
 
     public static @NotNull String[] getCommandSuccess(String command) {

@@ -3,10 +3,10 @@ package com.balugaq.buildingstaff.core.services;
 import com.balugaq.buildingstaff.api.objects.Language;
 import com.balugaq.buildingstaff.implementation.BuildingStaffPlugin;
 import com.balugaq.buildingstaff.utils.ItemStackUtil;
+import com.balugaq.buildingstaff.utils.compatibility.Converter;
 import com.google.common.base.Preconditions;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import lombok.Getter;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.BaseComponent;
@@ -207,11 +207,11 @@ public class LocalizationService {
 
     @Nonnull
     @ParametersAreNonnullByDefault
-    public SlimefunItemStack getItemBy(String key, String id, Material material, String... extraLore) {
+    public ItemStack getItemBy(String key, String id, Material material, String... extraLore) {
         Preconditions.checkArgument(key != null, MSG_KEY_NULL);
         Preconditions.checkArgument(id != null, MSG_ID_NULL);
         Preconditions.checkArgument(material != null, MSG_MATERIAL_NULL);
-        SlimefunItemStack item = new SlimefunItemStack((this.idPrefix + id).toUpperCase(Locale.ROOT), material, this.getString(key + "." + id + KEY_NAME), this.getStringArray(key + "." + id + KEY_LORE));
+        ItemStack item = Converter.getItem(new SlimefunItemStack((this.idPrefix + id).toUpperCase(Locale.ROOT), material, this.getString(key + "." + id + KEY_NAME), this.getStringArray(key + "." + id + KEY_LORE)));
         if (extraLore != null && extraLore.length != 0) {
             appendLore(item, extraLore);
         }
@@ -220,53 +220,53 @@ public class LocalizationService {
 
     @Nonnull
     @ParametersAreNonnullByDefault
-    public SlimefunItemStack getItemBy(String key, String id, String texture, String... extraLore) {
+    public ItemStack getItemBy(String key, String id, String texture, String... extraLore) {
         Preconditions.checkArgument(key != null, MSG_KEY_NULL);
         Preconditions.checkArgument(id != null, MSG_ID_NULL);
         Preconditions.checkArgument(texture != null, MSG_TEXTURE_NULL);
-        return appendLore(new SlimefunItemStack((this.idPrefix + id).toUpperCase(Locale.ROOT), texture, this.getString(key + "." + id + ".name"), this.getStringArray(key + "." + id + ".lore")), extraLore);
+        return appendLore(Converter.getItem(new SlimefunItemStack((this.idPrefix + id).toUpperCase(Locale.ROOT), texture, this.getString(key + "." + id + ".name"), this.getStringArray(key + "." + id + ".lore"))), extraLore);
     }
 
     @Nonnull
     @ParametersAreNonnullByDefault
-    public SlimefunItemStack getItemBy(String key, String id, ItemStack itemStack, String... extraLore) {
+    public ItemStack getItemBy(String key, String id, ItemStack itemStack, String... extraLore) {
         Preconditions.checkArgument(key != null, MSG_KEY_NULL);
         Preconditions.checkArgument(id != null, MSG_ID_NULL);
         Preconditions.checkArgument(itemStack != null, MSG_ITEMSTACK_NULL);
-        return appendLore(new SlimefunItemStack((this.idPrefix + id).toUpperCase(Locale.ROOT), itemStack, this.getString(key + "." + id + ".name"), this.getStringArray(key + "." + id + ".lore")), extraLore);
+        return appendLore(Converter.getItem(new SlimefunItemStack((this.idPrefix + id).toUpperCase(Locale.ROOT), itemStack, this.getString(key + "." + id + ".name"), this.getStringArray(key + "." + id + ".lore"))), extraLore);
     }
 
     @Nonnull
     @ParametersAreNonnullByDefault
-    public SlimefunItemStack getItemGroupItem(String id, Material material) {
+    public ItemStack getItemGroupItem(String id, Material material) {
         return this.getItemBy(this.itemGroupKey, id, material);
     }
 
     @Nonnull
     @ParametersAreNonnullByDefault
-    public SlimefunItemStack getItemGroupItem(String id, String texture) {
+    public ItemStack getItemGroupItem(String id, String texture) {
         return this.getItemBy(this.itemGroupKey, id, texture);
     }
 
     @Nonnull
     @ParametersAreNonnullByDefault
-    public SlimefunItemStack getItemGroupItem(String id, ItemStack itemStack) {
+    public ItemStack getItemGroupItem(String id, ItemStack itemStack) {
         return this.getItemBy(this.itemGroupKey, id, itemStack);
     }
 
-    public SlimefunItemStack getItem(String id, Material material, String... extraLore) {
+    public ItemStack getItem(String id, Material material, String... extraLore) {
         return this.getItemBy(this.itemsKey, id, material, extraLore);
     }
 
     @Nonnull
     @ParametersAreNonnullByDefault
-    public SlimefunItemStack getItem(String id, String texture, String... extraLore) {
+    public ItemStack getItem(String id, String texture, String... extraLore) {
         return this.getItemBy(this.itemsKey, id, texture, extraLore);
     }
 
     @Nonnull
     @ParametersAreNonnullByDefault
-    public SlimefunItemStack getItem(String id, ItemStack itemStack, String... extraLore) {
+    public ItemStack getItem(String id, ItemStack itemStack, String... extraLore) {
         return this.getItemBy(this.itemsKey, id, itemStack, extraLore);
     }
 
@@ -337,7 +337,7 @@ public class LocalizationService {
     @Nonnull
     @ParametersAreNonnullByDefault
     public ItemStack getItemStack(String key, Material material) {
-        return ItemStackUtil.getCleanItem(new CustomItemStack(material, this.getString(key + KEY_NAME), this.getStringArray(key + KEY_LORE)));
+        return ItemStackUtil.getCleanItem(Converter.getItem(material, this.getString(key + KEY_NAME), this.getStringArray(key + KEY_LORE)));
     }
 
     @Nonnull

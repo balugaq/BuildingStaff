@@ -20,12 +20,16 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 public class StaffSetup implements IManager {
+    public static final ItemStack COMPRESSED_CARBON = Converter.getItem(SlimefunItems.COMPRESSED_CARBON);
+    public static final ItemStack STAFF_ELEMENTAL = Converter.getItem(SlimefunItems.STAFF_ELEMENTAL);
+    public static final ItemStack DAMASCUS_STEEL_INGOT = Converter.getItem(SlimefunItems.DAMASCUS_STEEL_INGOT);
+    public static final ItemStack BRASS_INGOT = Converter.getItem(SlimefunItems.BRASS_INGOT);;
+    public static final ItemStack BRONZE_INGOT = Converter.getItem(SlimefunItems.BRONZE_INGOT);
     public static ItemGroup mainGroup;
     public static BuildingStaff9 buildingStaff9;
     public static BuildingStaff64 buildingStaff64;
@@ -81,9 +85,9 @@ public class StaffSetup implements IManager {
                 ),
                 RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{
-                        SlimefunItems.COMPRESSED_CARBON, SlimefunItems.COMPRESSED_CARBON, SlimefunItems.DAMASCUS_STEEL_INGOT,
-                        SlimefunItems.COMPRESSED_CARBON, stick, SlimefunItems.COMPRESSED_CARBON,
-                        stick, SlimefunItems.COMPRESSED_CARBON, SlimefunItems.COMPRESSED_CARBON
+                        COMPRESSED_CARBON, COMPRESSED_CARBON, DAMASCUS_STEEL_INGOT,
+                        COMPRESSED_CARBON, stick, COMPRESSED_CARBON,
+                        stick, COMPRESSED_CARBON, COMPRESSED_CARBON
                 }
         );
 
@@ -102,7 +106,7 @@ public class StaffSetup implements IManager {
                 RecipeType.ANCIENT_ALTAR,
                 new ItemStack[]{
                         buildingStaff9.getItem(), buildingStaff9.getItem(), buildingStaff9.getItem(),
-                        buildingStaff9.getItem(), SlimefunItems.STAFF_ELEMENTAL, buildingStaff9.getItem(),
+                        buildingStaff9.getItem(), STAFF_ELEMENTAL, buildingStaff9.getItem(),
                         buildingStaff9.getItem(), buildingStaff9.getItem(), buildingStaff9.getItem()
                 }
         );
@@ -138,9 +142,9 @@ public class StaffSetup implements IManager {
                 ),
                 RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{
-                        SlimefunItems.COMPRESSED_CARBON, SlimefunItems.COMPRESSED_CARBON, SlimefunItems.BRASS_INGOT,
-                        SlimefunItems.COMPRESSED_CARBON, stick, SlimefunItems.COMPRESSED_CARBON,
-                        stick, SlimefunItems.COMPRESSED_CARBON, SlimefunItems.COMPRESSED_CARBON
+                        COMPRESSED_CARBON, COMPRESSED_CARBON, BRASS_INGOT,
+                        COMPRESSED_CARBON, stick, COMPRESSED_CARBON,
+                        stick, COMPRESSED_CARBON, COMPRESSED_CARBON
                 }
         );
 
@@ -159,7 +163,7 @@ public class StaffSetup implements IManager {
                 RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{
                         blockStrictBuildingStaff9.getItem(), blockStrictBuildingStaff9.getItem(), blockStrictBuildingStaff9.getItem(),
-                        blockStrictBuildingStaff9.getItem(), SlimefunItems.STAFF_ELEMENTAL, blockStrictBuildingStaff9.getItem(),
+                        blockStrictBuildingStaff9.getItem(), STAFF_ELEMENTAL, blockStrictBuildingStaff9.getItem(),
                         blockStrictBuildingStaff9.getItem(), blockStrictBuildingStaff9.getItem(), blockStrictBuildingStaff9.getItem()
                 }
         );
@@ -195,9 +199,9 @@ public class StaffSetup implements IManager {
                 ),
                 RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{
-                        SlimefunItems.COMPRESSED_CARBON, SlimefunItems.COMPRESSED_CARBON, SlimefunItems.BRONZE_INGOT,
-                        SlimefunItems.COMPRESSED_CARBON, stick, SlimefunItems.COMPRESSED_CARBON,
-                        stick, SlimefunItems.COMPRESSED_CARBON, SlimefunItems.COMPRESSED_CARBON
+                        COMPRESSED_CARBON, COMPRESSED_CARBON, BRONZE_INGOT,
+                        COMPRESSED_CARBON, stick, COMPRESSED_CARBON,
+                        stick, COMPRESSED_CARBON, COMPRESSED_CARBON
                 }
         );
 
@@ -216,7 +220,7 @@ public class StaffSetup implements IManager {
                 RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{
                         breakingStaff9.getItem(), breakingStaff9.getItem(), breakingStaff9.getItem(),
-                        breakingStaff9.getItem(), SlimefunItems.STAFF_ELEMENTAL, breakingStaff9.getItem(),
+                        breakingStaff9.getItem(), STAFF_ELEMENTAL, breakingStaff9.getItem(),
                         breakingStaff9.getItem(), breakingStaff9.getItem(), breakingStaff9.getItem()
                 }
         );
