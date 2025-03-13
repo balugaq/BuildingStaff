@@ -60,7 +60,11 @@ public class StaffSetup implements IManager {
     @Override
     public void setup() {
         ItemStack stick = new ItemStack(Material.STICK);
-        ItemStack cc = ItemStackUtil.getCleanItem(SlimefunItems.COMPRESSED_CARBON);
+        ItemStack cc = Converter.getItem(SlimefunItems.COMPRESSED_CARBON);
+        ItemStack staffElemental = Converter.getItem(SlimefunItems.STAFF_ELEMENTAL);
+        ItemStack damascusSteel = Converter.getItem(SlimefunItems.DAMASCUS_STEEL_INGOT);
+        ItemStack brass = Converter.getItem(SlimefunItems.BRASS_INGOT);
+        ItemStack bronze = Converter.getItem(SlimefunItems.BRONZE_INGOT);
         mainGroup = new ItemGroup(KeyUtil.newKey("building_staff"), Converter.getItem(
                 Material.BLAZE_ROD,
                 "&a建筑魔杖"
@@ -80,7 +84,7 @@ public class StaffSetup implements IManager {
                 ),
                 RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{
-                        cc, cc, SlimefunItems.DAMASCUS_STEEL_INGOT,
+                        cc, cc, damascusSteel,
                         cc, stick, cc,
                         stick, cc, cc
                 }
@@ -101,7 +105,7 @@ public class StaffSetup implements IManager {
                 RecipeType.ANCIENT_ALTAR,
                 new ItemStack[]{
                         buildingStaff9.getItem(), buildingStaff9.getItem(), buildingStaff9.getItem(),
-                        buildingStaff9.getItem(), SlimefunItems.STAFF_ELEMENTAL, buildingStaff9.getItem(),
+                        buildingStaff9.getItem(), staffElemental, buildingStaff9.getItem(),
                         buildingStaff9.getItem(), buildingStaff9.getItem(), buildingStaff9.getItem()
                 }
         );
@@ -137,7 +141,7 @@ public class StaffSetup implements IManager {
                 ),
                 RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{
-                        cc, cc, SlimefunItems.BRASS_INGOT,
+                        cc, cc, brass,
                         cc, stick, cc,
                         stick, cc, cc
                 }
@@ -158,7 +162,7 @@ public class StaffSetup implements IManager {
                 RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{
                         blockStrictBuildingStaff9.getItem(), blockStrictBuildingStaff9.getItem(), blockStrictBuildingStaff9.getItem(),
-                        blockStrictBuildingStaff9.getItem(), SlimefunItems.STAFF_ELEMENTAL, blockStrictBuildingStaff9.getItem(),
+                        blockStrictBuildingStaff9.getItem(), staffElemental, blockStrictBuildingStaff9.getItem(),
                         blockStrictBuildingStaff9.getItem(), blockStrictBuildingStaff9.getItem(), blockStrictBuildingStaff9.getItem()
                 }
         );
@@ -194,7 +198,7 @@ public class StaffSetup implements IManager {
                 ),
                 RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{
-                        cc, cc, SlimefunItems.BRONZE_INGOT,
+                        cc, cc, bronze,
                         cc, stick, cc,
                         stick, cc, cc
                 }
@@ -215,7 +219,7 @@ public class StaffSetup implements IManager {
                 RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{
                         breakingStaff9.getItem(), breakingStaff9.getItem(), breakingStaff9.getItem(),
-                        breakingStaff9.getItem(), SlimefunItems.STAFF_ELEMENTAL, breakingStaff9.getItem(),
+                        breakingStaff9.getItem(), staffElemental, breakingStaff9.getItem(),
                         breakingStaff9.getItem(), breakingStaff9.getItem(), breakingStaff9.getItem()
                 }
         );
