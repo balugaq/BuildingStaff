@@ -203,7 +203,7 @@ public abstract class BuildingStaff extends SlimefunItem implements Staff {
                         || material == Material.DISPENSER
                         || material == Material.DROPPER
                         || material == Material.HOPPER
-                        || material == Material.VAULT
+                        || material == materialValueOf("VAULT")
                         || material.name().endsWith("_SHELF")
                         || material == Material.SUSPICIOUS_SAND
                         || material == Material.SUSPICIOUS_GRAVEL
@@ -247,7 +247,7 @@ public abstract class BuildingStaff extends SlimefunItem implements Staff {
                         || material == materialValueOf("TEST_BLOCK")
                         || material == materialValueOf("TEST_INSTANCE_BLOCK")
                         || material == Material.SPAWNER
-                        || material == Material.TRIAL_SPAWNER
+                        || material == materialValueOf("TRIAL_SPAWNER")
                         || material == Material.CHORUS_FLOWER
                         || material == Material.NETHER_WART
                         || material == Material.CAVE_VINES
@@ -293,7 +293,7 @@ public abstract class BuildingStaff extends SlimefunItem implements Staff {
                         || material == Material.DECORATED_POT
                         || material == Material.CHISELED_BOOKSHELF
                         || MaterialTags.SIGNS.isTagged(material)
-                        || material == Material.CRAFTER
+                        || material == materialValueOf("CRAFTER")
 
                         // Items that have different types
                         || material == Material.PLAYER_HEAD
