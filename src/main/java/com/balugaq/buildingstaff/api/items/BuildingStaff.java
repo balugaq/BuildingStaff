@@ -339,7 +339,9 @@ public abstract class BuildingStaff extends SlimefunItem implements Staff {
                         || material == Material.RED_MUSHROOM
                         || material == Material.CRIMSON_FUNGUS
                         || material == Material.WARPED_FUNGUS
-                        || material == Material.SHORT_GRASS
+                        || material == materialValueOf("GRASS")
+                        || material == materialValueOf("SHORT_GRASS")
+                        || material == materialValueOf("FIREFLY_BUSH")
                         || material == Material.FERN
                         || material == Material.DEAD_BUSH
                         || material == Material.DANDELION
