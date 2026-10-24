@@ -34,3 +34,5 @@ replay_pid*
 .classpath
 .project
 dependency-reduced-pom.xml
+
+.workbuddy
